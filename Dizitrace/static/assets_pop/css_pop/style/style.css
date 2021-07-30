@@ -1,0 +1,21 @@
+html,
+body {
+  height: 100%;
+}
+.bg-img {
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: url(../images/bg.jpg);
+}
+
+.search-container {
+  /* background: white; */
+  padding: 20px;
+  border-radius: 12px;
+  margin: 5px;
+  color: white;
+}
+.search-btn {
+  background-color: #9452a7;
+  color: white;
+}

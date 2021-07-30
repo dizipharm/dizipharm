@@ -1,0 +1,233 @@
+{% extends 'base_admin_dashboard.html' %}
+{%block content%}
+
+{%load static%}
+
+
+  <script>
+  function myFunction() {
+    alert("Company Registration Done Successfully");
+  }
+  </script>
+
+
+  <body class="loginPage">
+
+    <!-- container-start -->
+    <div class="container">
+
+    <!-- row-start -->
+    <div class="row">
+
+        <!-- col-start -->
+        <div class="col-12 col-md-7 py-5">
+
+            <!-- form-start -->
+            <form  class="row g-5 mx-auto fwf" action="/Register-form-1/" method="post">
+            {%csrf_token%}
+
+            <div class="col-12">
+            <!-- <h1 class="pTitle text-center">Welcome to</h1>
+            <h2 class="pStitle fw-bold mb-4 text-center"><span style="color: #ff9c00;">Trace</span>Pharm</h2> -->
+            <h5 class="rft">COMPANY REGISTRATION FORM</h5>
+            </div>
+
+            <div class="col-12 col-md-6">
+
+            <div class="mb-4">
+            <h3>Company Details</h3>
+            </div>
+            <div class="mb-4">
+            <label class="form-label">Company Category</label>
+            <select class="form-select" name="company_category" required>
+            <option selected>--Select--</option>
+            <option value="http://3.237.20.101:8000/company_category/1/">Manufacturer</option>
+            <option value="http://3.237.20.101:8000/company_category/2/">Wholeseller</option>
+            <option value="http://3.237.20.101:8000/company_category/3/">Distributor</option>
+            <option value="http://3.237.20.101:8000/company_category/4/">Logistic Service Provider</option>
+            <option value="http://3.237.20.101:8000/company_category/5/">Retailer</option>
+            </select>
+            </div>
+
+            <div class="mb-4">
+            <label class="form-label">Company name</label>
+            <input type="text" name="company_name" class="form-control" required>
+            </div>
+
+            <div class="mb-4">
+            <label class="form-label">Registration Number</label>
+            <input type="text" name="registration_no" class="form-control" required>
+            </div>
+
+            <!-- <div class="mb-4">
+            <label class="form-label">Vat Number</label>
+            <input type="text" name="contact_person" class="form-control">
+            </div> -->
+
+            <div class="mb-4">
+            <label class="form-label">Phone Number</label>
+            <input type="text" name="telephone" class="form-control" required>
+            </div>
+            <div class="mb-4">
+            <label class="form-label">Fax Number</label>
+            <input type="text" name="taxcode" class="form-control" required>
+            </div>
+           <div class="mb-4">
+           <label class="form-label">Upload Image</label>
+           {%csrf_token%}
+            <input type=file name="myfile">
+           </div>
+           
+            {%for i in res_token%}
+            <input type="hidden" name="user_id" id="sessionemailid" value="{{i.id}}" readonly><br>
+
+            {%endfor%}
+
+            <div class="d-grid">
+              <a href="{% url 'dashboard'%}" class="btn btn-login fw-bold">Back</a>
+
+            </div>
+
+            <!-- <div class="mb-4">
+            <label class="form-label">Email ID</label>
+            <input type="email" name="email" class="form-control">
+            </div> -->
+
+            </div>
+            <!-- col-end -->
+
+            <div class="col-12 col-md-6">
+
+                <div class="mb-4">
+                <h3>Company Location Details</h3>
+                </div>
+                <!-- <div class="mb-4">
+                <label class="form-label">Gln</label>
+                <input type="text" name="telephone" class="form-control">
+                </div> -->
+                <div class="mb-4">
+                <label class="form-label">Company Address Line 1</label>
+                <input type="text" name="street_address1" class="form-control" required>
+                </div>
+
+                <div class="mb-4">
+                <label class="form-label">Company Address Line 2</label>
+                <input type="text" name="street_address2" class="form-control" required>
+                </div>
+
+                <div class="mb-4">
+                <label class="form-label">City</label>
+                <input type="text" name="city" class="form-control">
+                </div>
+                <div class="mb-4">
+                <label class="form-label">Post Code</label>
+                <input type="text" name="postal_code" class="form-control">
+                </div>
+
+               <!-- <div class="mb-4">
+                <label class="form-label">County</label>
+                <input type="text" name="em_city" class="form-control" required>
+                </div> -->
+
+                <div class="mb-4">
+                <label class="form-label">Country</label>
+                <input type="text" name="country_code" class="form-control">
+                </div>
+
+
+
+                <div class="d-grid">
+                  <br>
+                  <!-- <td><button type="submit" onclick="myFunction()" class="btn btn-login fw-bold">Submit</button></td> -->
+                  <td><button type="submit" class="btn btn-login fw-bold">SUBMIT</button></td>
+
+
+                </div>
+
+
+            </div>
+            <!-- col-end -->
+            <div class="lFooter mt-5 p-3 text-center">
+            Powered By: © AI DIZITAL, Ltd. All rights reserved.
+            </div>
+            </form>
+            <!-- form-end -->
+
+        </div>
+
+        <!-- col-end -->
+
+        <!-- col-start -->
+        <div class="col-12 col-md-5 bg-violet py-5">
+
+            <!-- carousel-start -->
+            <div id="carouselExampleCaptions" class="carousel slide mx-auto" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="{%static "assets_login/images_login/carousel.svg"%}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Feature 1</h5>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{%static "assets_login/images_login/carousel.svg"%}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Feature 2</h5>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{%static "assets_login/images_login/carousel.svg"%}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Feature 3</h5>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{%static "assets_login/images_login/carousel.svg"%}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                    <h5>Feature 4</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{%static "assets_login/images_login/carousel.svg"%}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                    <h5>Feature 5</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <!-- carousel-end -->
+
+        </div>
+        <!-- col-end -->
+
+    </div>
+    <!-- row-end -->
+
+    </div>
+    <!-- container-end -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{%static "assets_login/js_login/custom.js"%}"></script>
+  </body>
+
+{%endblock%}

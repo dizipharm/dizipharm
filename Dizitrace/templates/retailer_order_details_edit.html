@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+
+
+<head>
+<br>
+	<title>Retailer Transaction data Form</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link href="./style.css" rel="stylesheet" crossorigin="anonymous" />
+
+  	<script type="text/javascript">
+	function clicked() {
+    alert('successfully submitted');
+	}
+	// function clicked() {
+  //   document.getElementsByid('myform').submit();
+	// }
+</script>
+
+	<style>
+		.overlay{
+			font-family: Arial, Helvetica, sans-serif;
+			background: url("https://gogomedsblog.com/wp-content/uploads/2018/03/pharm.jpg") no-repeat center center fixed;
+
+			font-size :15px;
+
+
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-color: black;
+
+			margin: 0;
+			font-weight:bold;
+
+
+
+
+
+		}
+
+		td{
+			padding: 15px;
+		}
+		input{
+			height: 30px;
+			border-radius: 10px;
+			border: none;
+
+		}
+
+		input:focus{
+			outline: none;
+			border: 1px solid black;
+		}
+		input:hover{
+			box-shadow: 5px 5px 5px orange;
+		}
+
+		.button{
+			background-color: white;
+			color:black;
+			border: none;
+			font-size :16px;
+			padding: 30px 16px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			button-size:20px;
+			font-weight:bold;
+
+
+		}
+
+		.button:hover {
+			cursor: pointer;
+			box-shadow: 5px 5px 5px orange;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			padding: 30px 16px;
+			font-weight:bold;
+		}
+
+		.opasity {
+		padding: 20px;
+		background: black;
+		color: white;
+		opacity: 0.7;
+
+		height:1000px;
+		background : cover;
+		margin_top: 0;
+
+
+		}
+	</style>
+
+</head>
+<body>
+<div class="overlay" >
+   <div class="opasity">
+	<h1 align="center"> Retailer Transaction Form</h1>
+
+	<hr>
+	<br>
+	<form method="post" class="post-form" action="/retailer_order_update/">
+	<!-- <form method="PUT" class="post-form" action="/update/{{ result.url|slice:'-2:-1' }}"> -->
+
+
+{%csrf_token%}
+		<div>
+
+			<table width="100%">
+				{%if result%}
+				<tr>
+					<td>SCCC</td>
+					<!-- <td><input type="hidden" name="id1"  placeholder="Enter Transaction ID" size="25" value="{{a.url|slice:'-2:-1'}}"> -->
+					<td>
+						<input type="text" name="em_sscc" placeholder="" size="25" value="{{result.em_sscc}}" >
+					</td>
+					<td>Gtin Number</td>
+					<td>
+						<input type="text" name="em_gtin" placeholder=""size="25"  value="{{result.em_gtin}}" >
+					</td>
+					<td>Batch Number</td>
+					<td>
+						<input type="text" name="em_batch_no" placeholder="Enter Owner"size="25"  value="{{result.em_batch_no}}" >
+					</td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr>
+					<td>Product Name</td>
+					<td>
+						<input type="text" name="em_drug_name" placeholder="Enter Order No" size="25"  value="{{result.em_drug_name}}" >
+					</td>
+					<td>Mfg Date</td>
+					<td>
+						<input type="text" name="em_mfg_date" placeholder="Enter Product Id" size="25"  value="{{result.em_mfg_date}}" >
+					</td>
+					<td>Expiry date</td>
+					<td>
+						<input type="text" name="em_expiry_date" placeholder="Enter serial number" size="25"  value="{{result.em_expiry_date}}" >
+					</td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+
+				<tr>
+					<td>Ingredients</td>
+					<td>
+						<input type="text" name="em_ingredients" placeholder="Enter batch number" size ="25"  value="{{result.em_ingredients}}" >
+					</td>
+
+
+
+					<td>Pallet Number</td>
+					<td>
+						<input type="text" name="em_pallet_no" placeholder="select date" size="25"  value="{{result.em_pallet_no}}" >
+					</td>
+					<td>Logistics Provider</td>
+					<td>
+						<input type="text" name="em_transporter" placeholder="select date" size="25"  value="{{result.em_transporter}}" >
+					</td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+
+				<!-- <tr>
+				<td>Qc Status</td>
+					<td>
+						<input type="text" name="em_qc_status" placeholder="Enter  Qc Status" size ="25" >
+					</td>
+					<td>Customer Contact</td>
+					<td>
+						<input type="text" name="em_contact_number" placeholder="Enter contact number" size="25" >
+					</td>
+					<td>Customer GLN</td>
+					<td>
+						<input type="text" name="em_current_owner_gln" placeholder="Enter GLN number" size="25" required>
+					</td>
+					</tr> -->
+				<!-- <tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+
+					<tr>
+					<td>SSCC</td>
+					<td>
+						<input type="text" name="em_sscc" placeholder="Enter SSCC code" size ="25" >
+					</td>
+					<td>Cost of Product</td>
+					<td>
+						<input type="text" name="em_cost_of_product" placeholder="Enter product-cost value" size="25" >
+					</td>
+					<td>Handoff Timestamp</td>
+					<td>
+						<input type="text" name="em_handoff_timestamp_current_owner"  size="25" >
+					</td>
+					</tr>
+					<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr> -->
+
+					<!-- <tr>
+					<td>Destination</td>
+					<td>
+						<input type="text" name="em_destination" placeholder="Enter destination" size ="25" >
+					</td>
+					<td>Logistic Name</td>
+					<td>
+						<input type="text" name="em_logistics_name" placeholder="Enter logistic name" size="25" >
+					</td>
+					<td>Quantity</td>
+					<td>
+						<input type="text" name="em_product_qty" placeholder="Enter  Quantity" size="25" >
+					</td>
+
+					</tr> -->
+					<!-- <tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+
+					<tr>
+					<td>Manufacturer Name</td>
+					<td>
+						 <input type="text" name="Manufacturer Name" name="em_mfg_name" placeholder="Enter Manufacturer name" size="25" >
+					</td>
+
+
+					<td>Customer Name </td>
+					<td>
+						 <input type="text" name="em_customer_name" placeholder="Enter Customer Name" size="25" >
+					</td>
+					<td>Next Owner Name</td>
+					<td>
+						<input type="text" name="em_previous_owner" placeholder="Enter Previous Owner name" size ="25" >
+					</td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr> -->
+				</div>
+				</table>
+				<br>
+				<br>
+				<hr>
+
+
+				<table  align ="center">
+				<tr>
+				<td>
+				<!-- <input type="button" value="Save" class="button"  > -->
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td><input type="submit"  class ="button"  value="Submit" />
+
+				</td>
+
+					</tr>
+					{%endif%}
+					</table>
+
+
+
+
+	</form>
+
+
+	</div>
+	</div>
+
+</body>
+
+</html>

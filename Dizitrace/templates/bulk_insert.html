@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dizital</title>
+
+      <link rel="stylesheet" href="{%static "assets_pop/style_pop/bootstrap.min.css"%}">
+    <link rel="stylesheet" href="{%static "assets_pop/style_pop/style.css"%}">
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
+</script>
+</head>
+
+<body class="bg-img">
+
+  <body style="background-color:whitesmoke;">
+    <br><br><br><br>
+
+        <div class="row justify-content-md-center ">
+            <div class="col col-12 detail-container card">
+              <br>
+                <h2 style="background: #231d50;
+                color: white;
+                text-align: center;
+                padding: .5rem;
+                border-radius: 5px;">Bulk Data Upload</h2>
+                <hr />
+
+<section id="multiple-column-form">
+              <table  border="3px">
+                <h4 class="card-title">please upload excel file</h4>
+                <section id="multiple-column-form">
+                    <div class="row match-height">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+
+                                </div>
+                                {%if messages%}
+            {%for message in messages%}
+            <div class="" role="alert">
+              <p{%if message.tags %} class =""{% endif%}>{{message}}</p>
+
+
+            {%endfor%}
+            {%endif%}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="myfile">
+                <button type="submit">Upload</button>
+                <p{%if message.tags %} class =""{% endif%}>{{message}}</p>
+              </form>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <div class="col-md-18 text-center mt-3">
+  <button type="button" name=""><a href="/dashboard">Back</a></button>
+                </div>
+                </div>
+                </div>
+
+                </body>
+
+
+                </body>
+
+                </html>

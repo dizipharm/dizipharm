@@ -1,0 +1,57 @@
+{% extends 'base_admin_dashboard.html' %}
+{%block content%}
+
+{%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile app</title>
+
+      <link rel="stylesheet" href="{%static "assets_pop/style_pop/bootstrap.min.css"%}">
+    <link rel="stylesheet" href="{%static "assets_pop/style_pop/style.css"%}">
+    <style>
+      body{background-image:url("{% static "assets_pop/images_pop/bg.jpg"%}")}
+    </style>
+</head>
+
+<body class="bg-img">
+
+  <body class="bg-img">
+    <div class="container ">
+        <div class="row justify-content-md-center ">
+            <div class="col col-8 detail-container card">
+                <h2 style="background: #231d50;
+                color: white;
+                padding: .5rem;
+                border-radius: 5px;">PRODUCT INFORMATION</h2>
+                <hr />
+                {%for a in result%}
+                <ul class="list-group">
+                    <li class="list-group-item">Serial Number : <span>{{a.em_serial_no}}</span>
+                    </li>
+                    <li class="list-group-item">Product Name : <span>{{a.em_product_name}}</span>
+                    </li>
+                    <li class="list-group-item">Expiration Date : <span>{{a.em_mfg_date}}</span>
+                    </li>
+                    <li class="list-group-item">Description : <span>{{a.em_product_description}}</span>
+                    </li>
+                </ul>
+                {%endfor%}
+                <hr />
+                <div class="col-md-12 text-center mt-3">
+                    <!-- <button class="button btn  search-btn" type="submit">Explore More</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</body>
+
+</html>
+
+{% endblock content %}

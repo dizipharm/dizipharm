@@ -1,0 +1,138 @@
+<script>
+    function appen() {
+  var a = $("#mytext").val();
+  var b = $("#lastname").val();
+  var c = $("#any").val();
+  var case1 = $("#case1").val();
+  var case2 = $("#case2").val();
+  var case3 = $("#case3").val();
+  var case4 = $("#case4").val();
+  var case5 = $("#case5").val();
+  var case5 = $("#case6").val();
+  var unit1 = $("#unit1").val();
+  var case2 = $("#unit2").val();
+  var case3 = $("#unit3").val();
+  var unit4 = $("#unit4").val();
+  var unit5 = $("#unit5").val();
+  var unit6 = $("#unit6").val();
+  var unit7 = $("#unit7").val();
+  var case8 = $("#unit8").val();
+  var case9 = $("#unit9").val();
+  var unit10 = $("#unit10").val();
+  var unit11 = $("#unit11").val();
+  var unit12 = $("#unit12").val();
+  var unit13 = $("#unit13").val();
+  var unit14 = $("#unit14").val();
+  var case15 = $("#unit15").val();
+  var case16 = $("#unit16").val();
+  var unit17 = $("#unit17").val();
+  var unit18 = $("#unit18").val();
+  $("#mytable tbody").append("<tr><td>" + a + "</td><td>" + b + "</td><td>" + c + "</td></tr><tr><td>" + case1 + "</td><td>" + case2 + "</td><td>" + case3 + "</td></tr><tr><td>" + case4 + "</td><td>" + case5 + "</td><td>" + case6 + "</td></tr><tr><td>" + unit1 + "</td><td>" + unit2 + "</td><td>" + unit3 + "</td></tr><tr><td>" + unit4 + "</td><td>" + unit5 + "</td><td>" + unit6 + "</td></tr><tr><td>" + unit7 + "</td><td>" + unit8 + "</td><td>" + unit9 + "</td></tr><tr><td>" + unit10 + "</td><td>" + unit11 + "</td><td>" + unit12 + "</td></tr><tr><td>" + unit13 + "</td><td>" + unit14 + "</td><td>" + unit15 + "</td></tr><tr><td>" + unit16 + "</td><td>" + unit17 + "</td><td>" + unit18 + "</td></tr>);
+  $("#mytext").val('');
+  $("#lastname").val('');
+  $("#any").val('');
+  $("#case1").val('');
+  $("#case2").val('');
+  $("#case3").val('');
+  $("#case4").val('');
+  $("#case5").val('');
+  $("#case6").val('');
+  $("#unit1").val('');
+  $("#unit2").val('');
+  $("#unit3").val('');
+  $("#unit4").val('');
+  $("#unit5").val('');
+  $("#unit6").val('');
+  $("#unit7").val('');
+  $("#unit8").val('');
+  $("#unit9").val('');
+  $("#unit10").val('');
+  $("#unit11").val('');
+  $("#unit12").val('');
+  $("#unit13").val('');
+  $("#unit14").val('');
+  $("#unit15").val('');
+  $("#unit16").val('');
+  $("#unit17").val('');
+  $("#unit18").val('');
+}
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<table>
+  <td>Pallet Details</td>
+  <tr>
+    <td><label>name</label><input type="text" id="mytext" />
+    <label>name</label><input type="text" id="lastname" />
+    <label>name</label><input type="text" id="any" /></td>
+  </tr>
+
+  <tr></tr>
+    <tr></tr>
+    <td>Case Details</td>
+    <tr>
+      <td><label>name</label><input type="text" id="case1" />
+      <label>name</label><input type="text" id="case2" />
+      <label>name</label><input type="text" id="case3" /></td>
+    </tr>
+    <tr>
+      <td><label>name</label><input type="text" id="case4" />
+      <label>name</label><input type="text" id="case5" />
+      <label>name</label><input type="text" id="case6" /></td>
+    </tr>
+    <tr></tr>
+      <tr></tr>
+      <td>Unit Details</td>
+      <tr>
+        <td><label>name</label><input type="text" id="unit1" />
+        <label>name</label><input type="text" id="unit2" />
+        <label>name</label><input type="text" id="unit3" /></td>
+      </tr>
+      <tr>
+        <td><label>name</label><input type="text" id="unit4" />
+        <label>name</label><input type="text" id="unit5" />
+        <label>name</label><input type="text" id="unit6" /></td>
+      </tr>
+      <tr>
+        <td><label>name</label><input type="text" id="unit7" />
+        <label>name</label><input type="text" id="unit8" />
+        <label>name</label><input type="text" id="unit9" /></td>
+      </tr>
+      <tr>
+        <td><label>name</label><input type="text" id="unit10" />
+        <label>name</label><input type="text" id="unit11" />
+        <label>name</label><input type="text" id="unit12" /></td>
+      </tr>
+      <tr>
+        <td><label>name</label><input type="text" id="unit13" />
+        <label>name</label><input type="text" id="unit14" />
+        <label>name</label><input type="text" id="unit15" /></td>
+      </tr>
+      <tr>
+        <td><label>name</label><input type="text" id="unit16" />
+        <label>name</label><input type="text" id="unit17" />
+        <label>name</label><input type="text" id="unit18" /></td>
+      </tr>
+</table>
+
+<br />
+<br />
+<input type="submit" value="submit" onclick="appen()" id="submit" />
+<br />
+<br />
+<table id="mytable">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>lastname</th>
+      <th>anything</th>
+      <th>nothi</th>
+      <th>anything</th>
+      <th>anything</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>

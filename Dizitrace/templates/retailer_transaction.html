@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+
+
+<head>
+<br>
+	<title>Retailer Transaction data Form</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link href="./style.css" rel="stylesheet" crossorigin="anonymous" />
+
+  	<script type="text/javascript">
+	function clicked() {
+    alert('successfully submitted');
+	}
+	// function clicked() {
+  //   document.getElementsByid('myform').submit();
+	// }
+</script>
+
+	<style>
+		.overlay{
+			font-family: Arial, Helvetica, sans-serif;
+			background: url("https://gogomedsblog.com/wp-content/uploads/2018/03/pharm.jpg") no-repeat center center fixed;
+
+			font-size :15px;
+
+
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-color: black;
+
+			margin: 0;
+			font-weight:bold;
+
+
+
+
+
+		}
+
+		td{
+			padding: 15px;
+		}
+		input{
+			height: 30px;
+			border-radius: 10px;
+			border: none;
+
+		}
+
+		input:focus{
+			outline: none;
+			border: 1px solid black;
+		}
+		input:hover{
+			box-shadow: 5px 5px 5px orange;
+		}
+
+		.button{
+			background-color: white;
+			color:black;
+			border: none;
+			font-size :16px;
+			padding: 30px 16px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			button-size:20px;
+			font-weight:bold;
+
+
+		}
+
+		.button:hover {
+			cursor: pointer;
+			box-shadow: 5px 5px 5px orange;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			padding: 30px 16px;
+			font-weight:bold;
+		}
+
+		.opasity {
+		padding: 20px;
+		background: black;
+		color: white;
+		opacity: 0.7;
+
+		height:1000px;
+		background : cover;
+		margin_top: 0;
+
+
+		}
+	</style>
+
+</head>
+<body>
+<div class="overlay" >
+   <div class="opasity">
+	<h1 align="center"> Retailer Transaction Form</h1>
+
+	<hr>
+	<br>
+	<form  class="" action="" method="post">
+
+{%csrf_token%}
+	<div class="form-body">
+
+			<table width="100%">
+				<tr>
+					<td>Serial_number</td>
+					<td>
+						<input type="text" name="serial_number" placeholder="Enter serial_number" size="40" required>
+					</td>
+					<td>Customer Name</td>
+					<td>
+						<input type="text" name="customer_name" placeholder="Enter customer name" size ="40" required>
+					</td>
+					<td>Customer Contact</td>
+					<td>
+						<input type="text" name="customer_contact" placeholder="Enter contact number" size="40" required>
+					</td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+
+				<tr>
+					<td>Customer Address</td>
+					<td> <textarea rows= "10" cols="20" name="customer_address" placeholder="Enter customer address" style="width: 200px;
+							height: 100px;" SIZE 300x150px>
+					</textarea>
+
+					</td>
+
+
+
+					<td>Handoff Timestamp</td>
+					<td>
+						<input type="text" name="handoff_timestamp"  size="40" required>
+					</td>
+					<td>Customer Disease</td>
+					<td>
+						<input type="text" name="customer_disease" placeholder="Enter Disease name" size="40" required>
+					</td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+
+				<tr>
+				<td>Owner Name</td>
+					<td>
+						<input type="text" name="current_owner_name" placeholder="Enter Owner name" size ="40" required>
+					</td>
+					<td>Previous Owner Name</td>
+					<td>
+						<input type="text" name="previous_owner_name" placeholder="Enter Previous Owner name" size ="40" required>
+					</td>
+
+					<td>Batch Number</td>
+					<td>
+						<input type="text" name="batch_number" placeholder="Enter Batch number" size="40" required>
+					</td>
+					</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+
+					<tr>
+					<td>Manufacturer Date</td>
+					<td>
+						<input type="text" name="mfg_date" placeholder="select date" size="40" required>
+					</td>
+					<td>Expiry Date</td>
+					<td>
+						<input type="text" name="expiry_date" placeholder="select date" size="40" required>
+					</td>
+					<td>Quantity</td>
+					<td>
+						<input type="text" name="quantity"  placeholder="Enter quantity " size="40" required>
+					</td>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+
+
+					<tr>
+					<td>Cost of product</td>
+					<td>
+						<input type="text" name="cost_of_product"  placeholder="Enter product cost " size="40" required>
+					</td>
+					<td>Product_category</td>
+					<td>
+						<input type="text" name="product_category" placeholder="Enter product type /unit/pallet/item" size="40" required>
+					</td>
+					</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				</div>
+				</table>
+				<br>
+				<br>
+				<hr>
+
+
+				<table  align ="center">
+				<tr>
+				<td>
+				<!-- <input type="button" value="Save" class="button"  > -->
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				<td>
+					<!-- <input type="button" class ="button" onclick="return false;" value="play" /> -->
+						<input type="submit" value="submit" onclick="clicked" class="button">
+					<!-- <button type="submit"  name="button"></button> -->
+				</td>
+
+					</tr>
+					</table>
+
+
+
+
+	</form>
+
+
+	</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{%load static%}
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+      <link href="{%static "assets_mvp3/css/style.css"%}" rel="stylesheet">
+  	<link rel="icon" type="image/ico" sizes="16x16" href="{%static "assets_mvp3/images/dizicare.ico"%}">
+
+    <!-- Favicon - loaded as static -->
+     <link href="{% static 'assets/img/brand/favicon.png' %}" rel="icon" type="image/png">
+
+     <!-- Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+     <!-- Icons -->
+     <link href="{%static "assets/js/plugins/nucleo/css/nucleo.css"%}" rel="stylesheet" />
+     <link href="{%static "assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css"%}" rel="stylesheet" />
+     <!-- CSS Files -->
+     <link href="{%static "assets/css/argon-dashboard.css?v=1.1.0"%}" rel="stylesheet" />
+
+      <title>Dashboard</title>
+  </head>
+  <body>
+  </ul>
+  <div class="tab-content border bg-white" id="myTabContent">
+    <div class="tab-pane fade show p-2 active overflow-auto" id="track" role="tabpanel" aria-labelledby="track-tab">
+      <div class="d-flex flex-wrap center-content-end my-2">
+<center><h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspManufacturer Transactions</h2></center>
+      <!-- <button type="button" >flag</button>
+      <button type="button" class="btn btn-warning me-2">Recall</button>
+      <button type="button" class="btn btn-info me-2">Edit</button>
+      <button type="button" class="btn btn-primary me-2">Export</button>
+      <button type="button" class="btn btn-white"><i class="bi bi-printer"></i></button> -->
+
+      </div>
+      <table class="table tt">
+        <thead>
+          <tr>
+            <th style="width: 130px;">SSCC</th>
+            <th style="width: 130px;">Gtin</th>
+            <th style="width: 130px;">Batch No</th>
+            <th style="width: 130px;">Product Name</th>
+            <th style="width: 130px;">Mfg date</th>
+            <th style="width: 130px;">Expiry Date</th>
+            <th style="width: 130px;">Status</th>
+            <!-- <th style="width: 130px;">Action</th> -->
+          </tr>
+        </thead>
+        <tbody>
+
+          {%for a in result %}
+
+                            <tr>
+                            <!-- <td>{{a.Sno}}</td> -->
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_sscc}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_gtin}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_batch_no}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_drug_name}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_mfg_date}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_expiry_date}}</span></td>
+            <td><span class="glyphicon glyphicon-pencil" >Order Received</span></td>
+
+
+            <!-- <td><a href="/retailer_order_details_edit/{{ a.url|slice:'-3:-1' }}"><span class="glyphicon glyphicon-pencil" >Get Data</span></a></td> -->
+
+            <!-- <td>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-three-dots-vertical text-white"></i>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="db1">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul> -->
+            <!-- </div><!-- dropdown-end -->
+            <!-- </td> -->
+
+{%endfor%}
+
+        </tbody>
+    </table>
+    </div>
+    <div class="col-md-18 text-center mt-3">
+      <button type="button" name=""><a href="/dashboard">Back</a></button>
+    </div>
+  </body>
+</html>

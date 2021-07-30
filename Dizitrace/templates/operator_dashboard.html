@@ -1,0 +1,197 @@
+{% extends 'base_operator_dashboard.html' %}
+{%block content%}
+
+{%load static%}
+
+      <div class="main m-3"><!--main-start-->
+
+        <!--row-start-->
+        <div class="row">
+
+        <!--cnt-box-start-->
+        <div class="cntBox blAqua">
+
+          <div class="d-flex">
+          <a href="#availableStockByLocation" data-bs-toggle="modal" class="me-3 text-dark text-decoration-none title">CATEGORIES</a>
+
+          <div class="dropdown ms-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            i
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div><!-- dropdown-end -->
+          </div>
+
+          <a href="#availableStockByLocation" data-bs-toggle="modal"><img src="{%static "assets/images/map.svg"%}" /></a>
+
+        </div><!--cnt-box-end-->
+
+        <!--cnt-box-start-->
+        <div class="cntBox blPink">
+
+          <div class="d-flex">
+          <a href="#ProductSubClassificationDemand" data-bs-toggle="modal" class="me-3 text-dark text-decoration-none title">QUANTITY PER AGE CATEGORIES</a>
+
+          <div class="dropdown ms-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            i
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div><!-- dropdown-end -->
+          </div>
+
+          <a href="#ProductSubClassificationDemand" data-bs-toggle="modal"><img src="{%static "assets/images/product-chart.svg"%}" /></a>
+
+        </div><!--cnt-box-end-->
+
+        <!--cnt-box-start-->
+        <div class="cntBox blViolet">
+
+          <div class="d-flex">
+          <a href="#" class="me-3 text-dark text-decoration-none title">QUANTITY PER CLASSIFICATION</a>
+
+          <div class="dropdown ms-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            i
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here..</a></li>
+            </ul>
+          </div><!-- dropdown-end -->
+          </div>
+
+          <a href="#"><img src="{%static "assets/images/product-chart.svg"%}" /></a>
+
+        </div><!--cnt-box-end-->
+
+        <!--cnt-box-start-->
+        <div class="cntBox blSf">
+
+          <div class="d-flex">
+          <a href="#" class="me-3 text-dark text-decoration-none title">PRODUCT INFO PER AGE GROUP</a>
+
+          <div class="dropdown ms-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            i
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div><!-- dropdown-end -->
+          </div>
+
+          <a href="#"><img src="{%static "assets/images/demand-supply.svg"%}" /></a>
+
+        </div><!--cnt-box-end-->
+
+        <!--cnt-box-start-->
+        <div class="cntBox blWarning">
+
+          <div class="d-flex">
+          <a href="#" class="me-3 text-dark text-decoration-none title">PRODUCT INFO PER CLASSIFICATION</a>
+
+          <div class="dropdown ms-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            i
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div><!-- dropdown-end -->
+          </div>
+
+          <a href="#"><img src="{%static "assets/images/returned-reason.svg"%}" /></a>
+
+        </div><!--cnt-box-end-->
+
+        <!--cnt-box-start-->
+        <div class="cntBox blPurple">
+
+          <div class="d-flex">
+          <a href="#" class="me-3 text-dark text-decoration-none title">QUALITY PER PRODUCTION</a>
+
+          <div class="dropdown ms-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            i
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div><!-- dropdown-end -->
+          </div>
+
+          <a href="#"><img src="{%static "assets/images/quality.svg"%}" /></a>
+
+        </div><!--cnt-box-end-->
+
+        <!--cnt-box-start-->
+        <div class="cntBox blTeal">
+
+          <div class="d-flex">
+          <a href="#" class="me-3 text-dark text-decoration-none title">DEMAND FORECAST</a>
+
+          <div class="dropdown ms-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            i
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div><!-- dropdown-end -->
+          </div>
+
+          <a href="#"><img src="{%static "assets/images/demand-forecasting.svg"%}" /></a>
+
+        </div><!--cnt-box-end-->
+
+        <!--cnt-box-start-->
+        <div class="cntBox blWarning">
+
+          <div class="d-flex">
+          <a href="#" class="me-3 text-dark text-decoration-none title">PRODUCT INFO PER CLASSIFICATION</a>
+
+          <div class="dropdown ms-auto">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            i
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div><!-- dropdown-end -->
+          </div>
+
+          <a href="#"><img src="{%static "assets/images/demand-forecasting.svg"%}" /></a>
+
+        </div><!--cnt-box-end-->
+
+            <!-- footer-start -->
+            <div class="container-fluid p-3 text-center dFooter">
+            Powered By: © AI DIZITAL, Ltd. All rights reserved.
+            </div>
+            <!-- footer-end -->
+
+          
+              </body>
+
+            </html>
+{%endblock%}

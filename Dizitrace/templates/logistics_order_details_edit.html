@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<br>
+	<title>Logistic Transaction data Form</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link href="./style.css" rel="stylesheet" crossorigin="anonymous" />
+
+  	<script type="text/javascript">
+	function clicked() {
+    alert('successfully submitted');
+	}
+</script>
+
+	<style>
+		.overlay{
+			font-family: Arial, Helvetica, sans-serif;
+			background: url("http://vikingpacking.com/files/2017/06/Freight.jpg") no-repeat center center fixed; 
+
+			font-size :14px;
+
+
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-color: black;
+
+			margin: 0;
+			font-weight:bold;
+
+
+
+
+
+		}
+
+		td{
+			padding: 15px;
+		}
+		input{
+			height: 30px;
+			border-radius: 10px;
+			border: none;
+
+		}
+
+		input:focus{
+			outline: none;
+			border: 1px solid white;
+		}
+		input:hover{
+			box-shadow: 5px 5px 5px aqua;
+		}
+
+		.button{
+			background-color: white;
+			color:black;
+			border: none;
+			font-size :16px;
+			padding: 30px 16px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			button-size:20px;
+			font-weight:bold;
+
+
+		}
+
+		.button:hover {
+			cursor: pointer;
+			box-shadow: 5px 5px 5px aqua;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			padding: 30px 16px;
+			font-weight:bold;
+		}
+
+		.opasity {
+		padding: 20px;
+		background: black;
+		color: white;
+		opacity: 0.6;
+
+		height:1000px;
+		background : cover;
+		margin_top: 0;
+
+
+		}
+
+	</style>
+
+</head>
+<body>
+   <div class="overlay" >
+   <div class="opasity">
+	<h1 align="center">  Logistic Transaction Form</h1>
+
+	<hr>
+	<br>
+  <!-- <form method="put" class="post-form" action"/logistics_order_update/{{ row.url|slice:'-3:-1' }}"> -->
+	<form method="PUT" class="post-form" action="/logistics_order_update/">
+
+
+
+{%csrf_token%}
+		<div>
+
+			<table width="100%">
+				{%if result%}
+        <tr>
+          <td>SSCC</td>
+          <!-- <td><input type="hidden" name="id1"  placeholder="Enter Transaction ID" size="25" value="{{a.url|slice:'-2:-1'}}"> -->
+          <td>
+            <input type="text" name="em_sscc" placeholder="" size="25" value="{{result.em_sscc}}" readonly>
+          </td>
+
+					<td>Truck Number</td>
+					<td>
+						<input type="text" name="em_truck_no" placeholder="Enter Owner"size="25"  value="{{result.em_truck_no}}" readonly>
+					</td>
+          <td>Retailer Name</td>
+					<td>
+						<input type="text" name="em_retailer_name" placeholder="Enter batch number" size ="25"  value="{{result.em_retailer_name}}" readonly>
+					</td>
+          <!-- <td>Gtin Number</td>
+          <td> -->
+            <input type="hidden" name="em_gtin" placeholder=""size="25"  value="{{result.em_gtin}}" >
+          <!-- </td> -->
+          <!-- <td>Batch Number</td>
+          <td> -->
+            <input type="hidden" name="em_batch_no" placeholder="Enter Owner"size="25"  value="{{result.em_batch_no}}" >
+          <!-- </td> -->
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+          <td>Product Name</td>
+          <td>
+            <input type="text" name="em_drug_name" placeholder="Enter Order No" size="25"  value="{{result.em_drug_name}}" readonly>
+          </td>
+          <td>Quantity</td>
+					<td>
+						<input type="text" name="em_production_qty" placeholder="Enter Product Id" size="25"  value="{{result.em_production_qty}}" readonly>
+					</td>
+					<td>Destination</td>
+					<td>
+						<input type="text" name="em_destination" placeholder="Enter serial number" size="25"  value="{{result.em_destination}}" readonly>
+					</td>
+          <!-- <td>Mfg Date</td>
+          <td> -->
+            <input type="hidden" name="em_mfg_date" placeholder="Enter Product Id" size="25"  value="{{result.em_mfg_date}}" >
+          <!-- </td> -->
+          <!-- <td>Expiry date</td>
+          <td> -->
+            <input type="hidden" name="em_expiry_date" placeholder="Enter serial number" size="25"  value="{{result.em_expiry_date}}" >
+          <!-- </td> -->
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+
+        <tr>
+          <!-- <td>Ingredients</td>
+          <td> -->
+            <input type="hidden" name="em_ingredients" placeholder="Enter batch number" size ="25"  value="{{result.em_ingredients}}" >
+          <!-- </td>
+
+
+
+          <td>Pallet Number</td>
+          <td> -->
+            <input type="hidden" name="em_pallet_no" placeholder="select date" size="25"  value="{{result.em_pallet_no}}" >
+          <!-- </td>
+          <td>Mfg Address/Gln</td>
+          <td> -->
+            <input type="hidden" name="em_gln" placeholder="" size="25"  value="{{result.em_gln}}">
+          </td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+
+        <tr>
+
+        <!-- <td>Product Type</td>
+          <td> -->
+            <input type="hidden" name="em_drug_type" placeholder="Enter  Qc Status" size ="25" value="{{result.em_drug_type}}" >
+          <!-- </td> -->
+          <!-- <td>Status</td>
+          <td> -->
+            <input type="hidden" name="em_status" placeholder="" size="25" value="{{result.em_status}}" >
+          <!-- </td>
+          <td>Transporter</td>
+          <td> -->
+            <input type="hidden" name="em_transporter" placeholder="Enter GLN number" size="25" required value="{{result.em_transporter}}">
+          <!-- </td>
+          </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+
+          <tr>
+          <td>NDC</td>
+          <td> -->
+            <input type="hidden" name="em_ndc" placeholder="Enter SSCC code" size ="25" value="{{result.em_ndc}}">
+          <!-- </td>
+          <td>Strength</td>
+          <td> -->
+            <input type="hidden" name="em_strength" placeholder="Enter product-cost value" size="25" value="{{result.em_strength}}">
+          <!-- </td>
+          <td>Description</td>
+          <td> -->
+            <input type="hidden" name="em_product_description"  size="25" value="{{result.em_product_description}}" >
+          <!-- </td>
+          </tr>
+          <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+
+          <tr>
+          <td>Patient Instruction</td>
+          <td>-->
+            <input type="hidden" name="em_patient_instruction" placeholder="Enter destination" size ="25" value="{{result.em_patient_instruction}}" >
+          <!-- </td>
+          <td>Destination</td>
+          <td> -->
+            <input type="hidden" name="em_destination" placeholder="Enter logistic name" size="25" value="{{result.em_destination}}">
+          <!-- </td>
+          <td>Manufacturer Name</td>
+          <td> -->
+            <input type="hidden" name="em_mfg_name" placeholder="Enter  Quantity" size="25" value="{{result.em_manufacturer_name}}">
+						<input type="hidden" name="em_previous_owner" placeholder="Enter  Quantity" size="25" value="{{result.em_transporter}}">
+          <!-- </td>
+
+          </tr>
+          <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+
+          <tr>
+          <td>Packaging Level</td>
+          <td> -->
+             <input type="hidden" name="em_packing_level" placeholder="" size="25" value="{{result.em_packing_level}}">
+          <!-- </td>
+
+
+          <td>Dimension</td>
+          <td> -->
+             <input type="hidden" name="em_container_size" placeholder="" size="25" value="{{result.em_container_size}}">
+          <!-- </td>
+          <td>Inner Contents</td>
+          <td> -->
+            <input type="hidden" name="em_inner_content" placeholder="" size ="25" value="{{result.em_inner_contents}}">
+          <!-- </td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+        <td>Entry Point</td>
+        <td> -->
+           <input type="hidden" name="" name="em_mfg_name" placeholder="" size="25" value="{{result.em_manufacturer_name}}">
+        <!-- </td>
+
+
+        <td>Exit Point</td>
+        <td> -->
+           <input type="hidden" name="em_destination" placeholder="" size="25" value="{{result.em_destination}}">
+        <!-- </td> -->
+        <!-- <td>Inner Contents</td>
+        <td> -->
+          <input type="hidden" name="em_order_no" placeholder="" size ="25" value="{{result.em_order_no}}">
+        <!-- </td>  -->
+        <!-- <td>Handoff time stamp to lsp</td>
+        <td> -->
+          <input type="hidden" name="em_last_updated1" placeholder="" size ="25" value="{{result.em_last_updated1}}">
+        <!-- </td>  -->
+        <td>
+          <input type="hidden" name="em_current_owner" placeholder="" size ="25" value="{{result.em_retailer_name}}">
+        </td>
+
+      </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        </div>
+        </table>
+        <br>
+        <br>
+        <hr>
+
+
+        <table  align ="center">
+        <tr>
+        <td>
+        <!-- <input type="button" value="Save" class="button"  > -->
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td><input type="submit"  class ="button"  value="Submit" />
+
+        </td>
+
+          </tr>
+
+					{%endif%}
+					</table>
+
+
+
+
+	</form>
+
+
+	</div>
+	</div>
+
+</body>
+
+</html>

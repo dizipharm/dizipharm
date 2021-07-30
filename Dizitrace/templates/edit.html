@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<br>
+	<title>Logistic Transaction data Form</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link href="./style.css" rel="stylesheet" crossorigin="anonymous" />
+
+  	<script type="text/javascript">
+	function clicked() {
+    alert('successfully submitted');
+	}
+</script>
+
+	<style>
+		.overlay{
+			font-family: Arial, Helvetica, sans-serif;
+			background: url("http://vikingpacking.com/files/2017/06/Freight.jpg") no-repeat center center fixed;
+
+			font-size :14px;
+
+
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-color: black;
+
+			margin: 0;
+			font-weight:bold;
+
+
+
+
+
+		}
+
+		td{
+			padding: 15px;
+		}
+		input{
+			height: 30px;
+			border-radius: 10px;
+			border: none;
+
+		}
+
+		input:focus{
+			outline: none;
+			border: 1px solid white;
+		}
+		input:hover{
+			box-shadow: 5px 5px 5px aqua;
+		}
+
+		.button{
+			background-color: white;
+			color:black;
+			border: none;
+			font-size :16px;
+			padding: 30px 16px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			button-size:20px;
+			font-weight:bold;
+
+
+		}
+
+		.button:hover {
+			cursor: pointer;
+			box-shadow: 5px 5px 5px aqua;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			padding: 30px 16px;
+			font-weight:bold;
+		}
+
+		.opasity {
+		padding: 20px;
+		background: black;
+		color: white;
+		opacity: 0.6;
+
+		height:1000px;
+		background : cover;
+		margin_top: 0;
+
+
+		}
+
+	</style>
+
+</head>
+<body>
+   <div class="overlay" >
+   <div class="opasity">
+	<h1 align="center">  Logistic Transaction Form</h1>
+		<table>
+		<tr>
+
+
+
+		</tr>
+	</table>
+  {%for a in result%}
+  		<br>
+<form method="PUT" class="post-form" action="/update/{{ result.url|slice:'-2:-1' }}">
+  			<table width="100%">
+  				<tr>
+  					<td>Transaction ID</td>
+  					<td>
+              <input type="text" name="" placeholder="Enter Transaction ID" size="40" value="{{a.em_transaction_no}}">
+
+  	  					<td>Current Owner Name</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_current_owner}}">
+
+
+  					</td>
+  					<td>Previous Owner Name</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_previous_owner}}">
+
+
+  					</td>
+  				</tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr>
+  					<td>Order No</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_order_no}}">
+
+
+  					</td>
+  					<td>Product Name</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_product_name}}">
+
+
+  					</td>
+  					<td>Serial Number</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_serial_no}}">
+
+
+  					</td>
+  				</tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+
+  				<tr>
+  					<td>Customer Name</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_customer_name}}">
+
+
+  					</td>
+
+
+
+  					<td>Customer Contact  </td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_contact_number}}">
+
+
+  					</td>
+  					<td>Customer GLN</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_current_owner_gln}}">
+
+
+  					</td>
+  				</tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+
+
+  					<tr>
+  					<td>SSCC</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_sscc}}">
+
+
+  					</td>
+  					<td>Cost of Product</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_cost_of_product}}">
+
+
+  					</td>
+  					<td>Handoff Timestamp</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_handoff_timestamp_current_owner}}">
+
+
+  					</td>
+  					</tr>
+  					<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+
+  					<tr>
+  					<td> Previous Handoff Timestamp</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_handoff_timestamp_previous_owner}}">
+
+  					</td>
+  					<td>Destination</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_destination}}">
+
+  					</td>
+  					<td>Logistic Name</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_logistics_name}}">
+
+
+  					</td>
+
+  					</tr>
+  					<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+
+  					<tr>
+  					<td>Quantity</td>
+  					<td>
+              <input type="text" placeholder="Enter Transaction ID" size="40" value="{{a.em_product_qty}}">
+
+
+  					</td>
+
+
+  					</tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr><td>
+            <!-- <button type="submit" class="btn btn-success">Update</button> -->
+            <!-- <input type="submit" class ="button" onclick="clicked" value="Submit" /> -->
+            <a href="/showapi/{{ a.url|slice:'-2:-1' }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				<tr></tr>
+  				</div>
+  				</table>
+  				<br>
+  				<br>
+
+  				<hr>
+
+
+  				<table  align ="center">
+  				<tr>
+  				<td>
+  				<!-- <input type="button" value="Save" class="button"  > -->
+  				</td>
+  				<td>
+  				</td>
+  				<td>
+  				</td>
+
+  				<!-- <td><input type="submit" class ="button" onclick="clicked" value="Submit" /> -->
+
+  				</td>
+
+  					</tr>
+  					<br>
+  					<br>
+  					{%endfor%}
+
+
+
+	</form>
+
+
+</div>
+</div>
+</body>
+
+</html>

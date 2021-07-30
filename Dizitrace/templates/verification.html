@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<br>
+	<title>Counterfiet Detection  Form</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- JavaScript Bundle with Popper -->
+
+<!-- CSS only -->
+
+
+  <link href="./style.css" rel="stylesheet" crossorigin="anonymous" />
+  <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	    // Get value on button click and show alert
+	    $("#myBtn").click(function(){
+	        var str = $("#myInput").val();
+	        alert(str);
+	    });
+	});
+	</script>
+
+
+	<style>
+
+		td{
+			padding: 15px;
+		}
+		input{
+			height: 30px;
+			border-radius: 10px;
+			border: none;
+
+		}
+		input:focus{
+			outline: none;
+			border: 1px solid black;
+		}
+		input:hover{
+			box-shadow: 5px 5px 5px orange;
+		}
+
+		.button{
+			background-color:white;
+			color:black;
+			border: none;
+			font-size :16px;
+			padding: 12px 1px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			button-size:5px;
+			font-weight:bold;
+
+
+		}
+		.button:hover {
+			cursor: pointer;
+			box-shadow: 5px 5px 5px orange;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			padding: 12px 1px;
+			font-weight:bold;
+		}
+
+		body.color{
+		background-color:#ccccff;
+		}
+		input:focus{
+				outline: none;
+			border: 1px ;
+		}
+
+
+		input.larger {
+        width: 20px;
+        height: 20px;
+      }
+	  td.text
+	  {
+	  color:white;
+	  font-size:20px;
+
+	}
+
+
+	</style>
+
+</head>
+<body class="color">
+ <div class="overlay" >
+   <div class="opasity">
+	<h1 align="center">
+<h1 align="center">Product Verification</h1>
+	<hr>
+	<br>
+			<table align="center">
+				<tr>
+					<td>
+						<td><form action="/verification/" method=post enctype=multipart/form-data>
+			{%csrf_token%}
+<div><label><input type="text" name="input" placeholder="Enter SSCC No" size ="40"></label></div>
+<td><p1><input type=submit   value="Verify" / img src="https://www.transparentpng.com/thumb/search-button/f2qMti-search-button-square-blue-free-png.png"
+alt="search button square blue free png @transparentpng.com"></p1></td>
+</form></td>
+						<!-- <input type="text" placeholder="Enter GTIN name" size ="40" >
+					</td><td><input type="image	 image" size="30" onclick="clicked();" value="Search" / img src="https://www.transparentpng.com/thumb/search-button/f2qMti-search-button-square-blue-free-png.png"
+alt="search button square blue free png @transparentpng.com"> </td> -->
+				</tr>
+				</table>
+
+			<br>
+{%if response2%}
+		<table width ="35%" border ="1px" align="center" height="15%" >
+		<tr bgcolor="#00004d">
+		<td ><input type="checkbox" class="larger"></td><td class="text">
+		Product
+		</td>
+
+		<td style="color:whitesmoke" >
+			<!-- <input type="hidden" id="myInput"name="" value="{{response2.Value}}"> -->
+			{{response2.product}}
+
+			</td></tr>
+
+
+		<tr bgcolor="#00004d">
+		<td><input type="checkbox" class="larger"></td><td class="text">Packaging</td><td style="color:whitesmoke" >
+			{{response2.package}}
+
+		</td></tr>
+
+
+		<tr bgcolor="#00004d">
+		<td><input type="checkbox" class="larger"></td><td class="text">Owner</td><td style="color:whitesmoke">
+			{{response2.owner}}
+		</td></tr>
+
+		<tr bgcolor="#00004d">
+		<td><input type="checkbox" class="larger"></td><td class="text">Location</td ><td style="color:whitesmoke">
+			{{response2.location}}
+		</td></tr>
+
+
+{%endif%}
+
+		</table>
+
+		</form>
+
+
+	</div>
+	</div>
+	<a href="{% url 'retailer_identify'%}">GO to Identification</a>
+	<br>
+	<br>
+	<br>
+	<br>
+	<hr>
+
+	</body>
+
+</html>

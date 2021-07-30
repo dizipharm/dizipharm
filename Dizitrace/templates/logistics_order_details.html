@@ -1,0 +1,58 @@
+{% extends 'base_admin_dashboard.html' %}
+{%block content%}
+{%load static%}
+<title>Dashboard</title>
+
+<body>
+  </ul>
+  <div class="tab-content border bg-white" id="myTabContent">
+    <div class="tab-pane fade show p-2 active overflow-auto" id="track" role="tabpanel" aria-labelledby="track-tab">
+      <div class="d-flex flex-wrap center-content-end my-2">
+<center><h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLogistics Transactions</h2></center>
+      <!-- <button type="button" >flag</button>
+      <button type="button" class="btn btn-warning me-2">Recall</button>
+      <button type="button" class="btn btn-info me-2">Edit</button>
+      <button type="button" class="btn btn-primary me-2">Export</button>
+      <button type="button" class="btn btn-white"><i class="bi bi-printer"></i></button> -->
+
+      </div>
+      <table class="table tt">
+        <thead>
+          <tr>
+            <th style="width: 150px;">SSCC</th>
+            <th style="width: 150px;">Transporter Name</th>
+            <th style="width: 150px;">Truck No</th>
+            <th style="width: 150px;">Pallet No</th>
+            <th style="width: 150px;">Destination</th>
+            <th style="width: 150px;">Status</th>
+            <th style="width: 150px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+{{result1}}
+          {%for a in result %}
+
+                            <tr>
+                            <!-- <td>{{a.Sno}}</td> -->
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_sscc}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_transporter}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_truck_no}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_pallet_no}}</span></td>
+          <td><span class="glyphicon glyphicon-pencil" >{{a.em_destination}}</span></td>
+            <td><span class="glyphicon glyphicon-pencil" >{{a.em_status}}</span></td>
+
+
+            <td><a href="/logistics_order_details_edit/{{ a.url|slice:'-3:-1' }}"><span class="glyphicon glyphicon-pencil" >View Data</span></a></td>
+
+
+
+{%endfor%}
+
+        </tbody>
+
+    </table>
+    </div>
+
+  </body>
+
+{%endblock%}

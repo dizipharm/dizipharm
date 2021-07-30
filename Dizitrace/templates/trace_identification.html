@@ -1,0 +1,2933 @@
+{% extends 'base_admin_dashboard.html' %}
+{%block content%}
+{%load static%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+<style media="screen">
+  #experience { color:blue }
+  body {
+      color: #000;
+      overflow-x: hidden;
+      height: 100%;
+      background-color: #8C9EFF;
+      background-repeat: no-repeat
+  }
+
+  .card {
+      z-index: 0;
+      background-color: #ECEFF1;
+      padding-bottom: 20px;
+      margin-top: 90px;
+      margin-bottom: 90px;
+      border-radius: 10px
+  }
+
+  .top {
+      padding-top: 40px;
+      padding-left: 13% !important;
+      padding-right: 13% !important
+  }
+
+  #progressbar {
+      margin-bottom: 30px;
+      overflow: hidden;
+      color: #455A64;
+      padding-left: 0px;
+      margin-top: 30px
+  }
+
+  #progressbar li {
+      list-style-type: none;
+      font-size: 13px;
+      width: 25%;
+      float: left;
+      position: relative;
+      font-weight: 400
+  }
+
+  #progressbar .step0:before {
+      font-family: FontAwesome;
+      content: "\f10c";
+      color: #fff
+  }
+
+  #progressbar li:before {
+      width: 40px;
+      height: 40px;
+      line-height: 45px;
+      display: block;
+      font-size: 20px;
+      background: #C5CAE9;
+      border-radius: 50%;
+      margin: auto;
+      padding: 0px
+  }
+
+  #progressbar li:after {
+      content: '';
+      width: 100%;
+      height: 12px;
+      background: #C5CAE9;
+      position: absolute;
+      left: 0;
+      top: 16px;
+      z-index: 1
+  }
+
+  #progressbar li:last-child:after {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      position: absolute;
+      left: -50%
+  }
+
+  #progressbar li:nth-child(2):after,
+  #progressbar li:nth-child(3):after {
+      left: 50%
+  }
+
+  #progressbar li:first-child:after {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      position: absolute;
+      left: 50%
+  }
+
+  #progressbar li:last-child:after {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px
+  }
+
+  #progressbar li:first-child:after {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px
+  }
+
+  #progressbar li.active:before,
+  #progressbar li.active:after {
+      background: #651FFF
+  }
+
+  #progressbar li.active:before {
+      font-family: FontAwesome;
+      content: "\f00c"
+  }
+
+  .icon {
+      width: 60px;
+      height: 60px;
+      margin-right: 15px
+  }
+
+  .icon-content {
+      padding-bottom: 20px
+  }
+
+  @media screen and (max-width: 992px) {
+      .icon-content {
+          width: 50%
+      }
+  }
+
+</style>
+
+
+<script type="text/javascript">
+                $( document ).ready(function() {
+                  $('#identification_table').on("click",".viewdetailsid2",function(){
+                    $(".step1").hide();
+                    $(".step2").hide();
+                    $(".step3").hide();
+                    $(".step4").hide();
+                      var status=$("#status").val();
+
+              if(status == "Received"){
+                $(".step1").show();
+                $(".step2").show();
+                $(".step3").show();
+                $(".step4").show();
+              }
+              else{
+                $(".step1").hide();
+              $(".step2").hide();
+              }
+              });
+              });
+                </script>
+
+
+{%for i in res_token%}
+<!-- manufacturer dashboar role wise -->
+{%if i.organization_id == '1' %}
+      {%if i.role == '1' %}
+      <div class="row">
+
+                     <div class="col-12 mt-4">
+                       <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link active" id="tp1-tab" data-bs-toggle="tab" data-bs-target="#tp1" type="button" role="tab" aria-controls="tp1" aria-selected="true"><i class="bi bi-shuffle" data-bs-toggle="tooltip" data-bs-placement="top" title="Track"></i></button>
+                         </li>
+
+                       </ul>
+                       <div class="tab-content border bg-white" id="myTabContent">
+                         <div class="tab-pane fade show p-3 active overflow-auto" id="tp1" role="tabpanel" aria-labelledby="tp1-tab">
+                           <div class="d-flex flex-wrap mb-2">
+
+                           <!-- searchBy-start -->
+                           <div class="dropdown me-auto sortBtn">
+                               <!-- <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                               Search by
+                               </button>
+                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                 <li><a class="dropdown-item" href="#">Product</a></li>
+                                 <li><a class="dropdown-item" href="#">Location</a></li>
+                                 <li><a class="dropdown-item" href="#">Owner</a></li>
+                                 <li><a class="dropdown-item" href="#">Transaction</a></li>
+                               </ul> -->
+                           </div>
+                           <!-- searchBy-end -->
+                           <!-- searchBy-end -->
+
+                           <!-- <button type="button" class="btn btn-white me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                           <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                           <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                           <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button> -->
+                           </div>
+                           <form class="form-inline ml-auto" id="frmUsers" name="frmUsers" method="GET" action="/trace_identification/">
+                             <div class="col-md-12 text-center mt-3">
+                               <input  class="form-control" type="text" placeholder="Enter serial number" aria-label="Search" id=""
+                                   name="trace_identification" style="width:20%" />
+                                   </div>
+                               <div >
+                                   <button class="button btn  search-btn" type="submit" id="experience">Submit</button>
+                           </form>
+                           <table class="table tt" id="identification_table">
+                             <thead>
+                               <tr>
+                                 <th width="50px"><input type="checkbox"></th>
+                                 <th class="d-flex border-0">
+                                 <!-- <div class="dropdown">
+                                   <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+                                   <i class="bi bi-three-dots-vertical text-white"></i>
+                                   </button>
+                                   <ul class="dropdown-menu" aria-labelledby="db1">
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> View Details</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Recall</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel"></i> Export</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                                   </ul>
+                                 </div> -->
+                                 </th>
+
+                                 <th style="width: 310px;">Product Name</th>
+                         <th style="width: 300px;">Entry Point</th>
+                         <!-- <th style="width: 200px;">Pallet Serial No</th> -->
+                         <!-- <th style="width: 200px;">Case Serial No</th> -->
+                         <th style="width: 300px;">Transaction</th>
+                         <th style="width: 310px;">Exit Point</th>
+                               </tr>
+                             </thead>
+
+                             <tbody >
+              {%for a in result%}
+                               <tr>
+                                 <td class="p-2"><input type="checkbox"></td>
+                                 <td class="p-2">
+                                   <!-- <div class="dropdown">
+                                     <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+                                     <i class="bi bi-three-dots-vertical text-white"></i>
+                                     </button>
+                                     <ul class="dropdown-menu identification-dropdown-menu" aria-labelledby="db1">
+                                       <li value="{{a.package_type}}"><a class="dropdown-item" href="#Paracetamol" data-bs-toggle="modal"><i class="bi bi-eye"></i> View Details</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Recall</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel"></i> Export</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                                     </ul>
+                                   </div> -->
+                                 </td>
+                                 <td class="p-2">{{a.disptch.product.product_name}}</td>
+                           <td class="p-2">{{a.disptch.consigner}}</td>
+                          <td class="p-2">{{a.transaction.transaction_type}}</td>
+                          <td class="p-2">{{a.disptch.consignee}}</td>
+                          <td>
+
+                            <button  type="button" data-bs-toggle="dropdown" >Trace</button>
+                            <ul class="dropdown-menu identification-dropdown-menu" >
+                              <li value="{{a.disptch.package_type}}"><a  href="#Paracetamol"  data-bs-toggle="modal"> Trace</a></li>
+                            </ul>
+
+                          </td>
+                               </tr>
+
+              {%endfor%}
+                             </tbody>
+                             </div>
+
+                           </table>
+                           </div><!--tp1-tabpane-end-->
+
+
+                         </div><!--tp4-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp5" role="tabpanel" aria-labelledby="tp5-tab">
+                         ....
+                         </div><!--tp5-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp6" role="tabpanel" aria-labelledby="tp6-tab">
+                         ....
+                         </div><!--tp6-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp7" role="tabpanel" aria-labelledby="tp7-tab">
+                         ....
+                         </div><!--tp7-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp8" role="tabpanel" aria-labelledby="tp8-tab">
+                         ....
+                         </div><!--tp8-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp9" role="tabpanel" aria-labelledby="tp9-tab">
+                         ....
+                         </div><!--tp9-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp10" role="tabpanel" aria-labelledby="tp10-tab">
+                         ....
+                         </div><!--tp10-tabpane-end-->
+
+                       </div>
+                     </div>
+                     <!--col-end-->
+
+                     </div>
+                     <!--row-end-->
+
+                   </div><!-- main-end -->
+
+                 <!-- </div><!-- container-fluid-end -->
+
+                 <!-- footer-start -->
+                 <!-- <div class="container-fluid p-3 text-center dFooter">
+                 Powered By: © AI DIZITAL, Ltd. All rights reserved.
+                 </div> -->
+                 <!-- footer-end -->
+
+                 <!-- modals-start-here -->
+
+                 <!-- modal-1-start -->
+                 <div class="modal fade" id="Paracetamol" tabindex="-1" aria-labelledby="ParacetamolLabel" aria-hidden="true">
+                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                     <!-- modal-content-start -->
+                     <div class="modal-content testing">
+
+                     </div>
+
+                     <!-- modal-content-end -->
+                   </div>
+                 </div>
+                 <!-- modal-1-end -->
+
+                 <!-- modals-end-here -->
+
+                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+                     <script src="{%static "assets/js/jquery-slim.js"%}"></script>
+                     <script src="{%static "assets/js/datatables.min.js"%}"></script>
+                     <script>
+                       $(document).ready( function () {
+                       $('.table').DataTable();
+                       // $("#identification_table").DataTable();
+                       // $("#identification_table").init();
+                       // $('#identification_table>tbody').hide();
+
+
+                   } );
+
+
+                   $(".identification-dropdown-menu li").click(function (){
+                     var $this = $(this);
+                     var sscc = $this.attr("value");
+                     console.log({ sscc })
+                     var identificationData = {{result | safe}}
+                     var filteredData = identificationData.filter(function(data) {
+                       return data.disptch.package_type === sscc;
+                     })
+                     var selectedSsccData = filteredData[0];
+                     var temp = `
+                     <!-- modal-header-start -->
+
+
+
+
+                     <div class="modal-header">
+
+
+                       <button type="button" class="btn-close text-white fs-2 mb-2" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></button>
+                     </div>
+                     <!-- modal-header-end -->
+
+                     <!-- modal-body-start -->
+                     <div class="modal-body">
+
+                       <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link active" id="mt1-tab" data-bs-toggle="tab" data-bs-target="#mt1" type="button" role="tab" aria-controls="mt1" aria-selected="true">Product Details</button>
+                         </li>
+
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt3-tab" data-bs-toggle="tab" data-bs-target="#mt3" type="button" role="tab" aria-controls="mt3" aria-selected="false">Entry Point</button>
+                         </li>
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt4-tab" data-bs-toggle="tab" data-bs-target="#mt4" type="button" role="tab" aria-controls="mt4" aria-selected="false">Transaction Details</button>
+                         </li>
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt6-tab" data-bs-toggle="tab" data-bs-target="#mt6" type="button" role="tab" aria-controls="mt6" aria-selected="false">Exit Point</button>
+                         </li>
+
+                       </ul>
+
+                       <div class="tab-content" id="myTabContent">
+
+                         <div class="tab-pane fade show active" id="mt1" role="tabpanel" aria-labelledby="mt1-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                         <div class="row">
+                         <div class="col-12 col-lg-5 p-3">
+                         <img src="{%static "assets/images/paracetamol.jpg"%}" class="border" width="100%"/>
+                         </div>
+                         <!--col-end-->
+
+                         <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+                           <table class="border" width="100%">
+                             <tr>
+                               <td class="p-2">Product Name</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_name}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Brand Name</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.brand_name}</td>
+                             </tr>
+
+
+                             <tr>
+                               <td class="p-2">Descriptions</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_description}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-1">Patient Instructions</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.patient_instruction}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Batch/Lot Number</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.batch_number}</td>
+                             </tr>
+
+                             <tr>
+                               <td class="p-1">Strength & Dosage Form</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.strength}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Ndc</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_ndc}</td>
+                             </tr>
+
+                               <tr>
+                                   <td class="p-2">Mfg Date</td>
+                                   <td class="p-2">: ${selectedSsccData.disptch.product.mfg_date}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="p-2">Exp Date</td>
+                                     <td class="p-2">: ${selectedSsccData.disptch.product.expiry_date}</td>
+                                   </tr>
+                                   <tr>
+                                       <td class="p-2">Mfg Name</td>
+                                       <td class="p-2">: ${selectedSsccData.disptch.product.manufacturer_name}</td>
+                                     </tr>
+                                     <tr>
+                                         <td class="p-2">Mfg Address</td>
+                                         <td class="p-2">: ${selectedSsccData.disptch.sender_location}</td>
+                                       </tr>
+                                       <tr>
+                                           <td class="p-2">Quantity</td>
+                                           <td class="p-2">: ${selectedSsccData}</td>
+                                         </tr>
+
+                           </table>
+
+                           </div>
+                           <!--col-end-->
+                         </div>
+                         <!--row-end-->
+
+                         </div><!--mt1-tab-pane-end-->
+
+
+
+                         <div class="tab-pane fade" id="mt3" role="tabpanel" aria-labelledby="mt3-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Entry Point</th>
+                               <th class="p-2">Orgin Address</th>
+                               <th class="p-2">Entry Point GLN</th>
+                              <th class="p-2">Time Stamp</th>
+
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+
+                               <td class="p-2">${selectedSsccData.disptch.consigner}</td>
+                               <td class="p-2">${selectedSsccData.disptch.sender_location}</td>
+                               <td class="p-2">${selectedSsccData.disptch.sender_loc_gln}</td>
+                               <td class="p-2">${selectedSsccData.location.trans_timestmap}</td>
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt3-tab-pane-end-->
+
+
+                         <div class="tab-pane fade" id="mt4" role="tabpanel" aria-labelledby="mt4-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Transaction Status </th>
+                               <th class="p-2">Event Time</th>
+                               <th class="p-2">Location</th>
+                              <th class="p-2">Temperature</th>
+                              <th class="p-2">Humidity</th>
+                              <th class="p-2">Aisle Location</th>
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.transaction.transaction_type}</td>
+                               <td class="p-2">${selectedSsccData.location.trans_timestmap}</td>
+                               <td class="p-2">${selectedSsccData.location.current_location}</td>
+                               <td class="p-2">${selectedSsccData.location.temperature}</td>
+                               <td class="p-2">${selectedSsccData.location.humidity}</td>
+                                <td class="p-2">${selectedSsccData}</td>
+
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt4-tab-pane-end-->
+
+                         <div class="tab-pane fade" id="mt6" role="tabpanel" aria-labelledby="mt6-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Receiver Owner GLN</th>
+                               <th class="p-2">Receiver Owner Name</th>
+
+                              <th class="p-2">SSCC No</th>
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.disptch.dispatch_loc_gln}</td>
+                               <td class="p-2">${selectedSsccData.disptch.consignee}</td>
+
+                               <td class="p-2">${selectedSsccData.disptch.sscc_no}</td>
+
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt6-tab-pane-end-->
+
+
+                       </div>
+                       <!--tabs-ends-here-->
+
+                     </div>
+                     <!-- modal-body-end -->
+                     `;
+                     $(".testing").html(temp);
+
+                   })
+
+
+
+
+
+
+
+
+
+                       </script>
+                     <script src="{%static "assets/js/custom.js"%}"></script>
+
+                   </body>
+      {%else%}
+      <h2>wrong</h2>
+      {%endif%}
+      {%endif%}
+
+<!-- wholeseller dashboar role wise -->
+      {%if i.organization_id == '2' %}
+            {%if i.role == '1' %}
+            <div class="row">
+
+                     <div class="col-12 mt-4">
+                       <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link active" id="tp1-tab" data-bs-toggle="tab" data-bs-target="#tp1" type="button" role="tab" aria-controls="tp1" aria-selected="true"><i class="bi bi-shuffle" data-bs-toggle="tooltip" data-bs-placement="top" title="Track"></i></button>
+                         </li>
+
+                       </ul>
+                       <div class="tab-content border bg-white" id="myTabContent">
+                         <div class="tab-pane fade show p-3 active overflow-auto" id="tp1" role="tabpanel" aria-labelledby="tp1-tab">
+                           <div class="d-flex flex-wrap mb-2">
+
+                           <!-- searchBy-start -->
+                           <div class="dropdown me-auto sortBtn">
+                               <!-- <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                               Search by
+                               </button>
+                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                 <li><a class="dropdown-item" href="#">Product</a></li>
+                                 <li><a class="dropdown-item" href="#">Location</a></li>
+                                 <li><a class="dropdown-item" href="#">Owner</a></li>
+                                 <li><a class="dropdown-item" href="#">Transaction</a></li>
+                               </ul> -->
+                           </div>
+                           <!-- searchBy-end -->
+                           <!-- searchBy-end -->
+
+                           <!-- <button type="button" class="btn btn-white me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                           <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                           <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                           <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button> -->
+                           </div>
+                           <form class="form-inline ml-auto" id="frmUsers" name="frmUsers" method="GET" action="/trace_identification/">
+                             <div class="col-md-12 text-center mt-3">
+                               <input  class="form-control" type="text" placeholder="Enter serial number" aria-label="Search" id=""
+                                   name="trace_identification" style="width:20%" />
+                                   </div>
+                               <div >
+                                   <button class="button btn  search-btn" type="submit" id="experience">Submit</button>
+                           </form>
+                           <table class="table tt" id="identification_table">
+                             <thead>
+                               <tr>
+                                 <th width="50px"><input type="checkbox"></th>
+                                 <th class="d-flex border-0">
+                                 <!-- <div class="dropdown">
+                                   <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+                                   <i class="bi bi-three-dots-vertical text-white"></i>
+                                   </button>
+                                   <ul class="dropdown-menu" aria-labelledby="db1">
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> View Details</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Recall</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel"></i> Export</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                                   </ul>
+                                 </div> -->
+                                 </th>
+
+                                 <th style="width: 310px;">Product Name</th>
+                         <th style="width: 300px;">Entry Point</th>
+                         <!-- <th style="width: 200px;">Pallet Serial No</th> -->
+                         <!-- <th style="width: 200px;">Case Serial No</th> -->
+                         <th style="width: 300px;">Transaction</th>
+                         <th style="width: 310px;">Exit Point</th>
+                               </tr>
+                             </thead>
+
+                             <tbody >
+              {%for a in result%}
+                               <tr>
+                                 <td class="p-2"><input type="checkbox"></td>
+                                 <td class="p-2">
+                                   <!-- <div class="dropdown">
+                                     <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+                                     <i class="bi bi-three-dots-vertical text-white"></i>
+                                     </button>
+                                     <ul class="dropdown-menu identification-dropdown-menu" aria-labelledby="db1">
+                                       <li value="{{a.package_type}}"><a class="dropdown-item" href="#Paracetamol" data-bs-toggle="modal"><i class="bi bi-eye"></i> View Details</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Recall</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel"></i> Export</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                                     </ul>
+                                   </div> -->
+                                 </td>
+                                 <td class="p-2">{{a.disptch.product.product_name}}</td>
+                           <td class="p-2">{{a.disptch.consigner}}</td>
+                          <td class="p-2">{{a.transaction.transaction_type}}</td>
+                          <td class="p-2">{{a.disptch.consignee}}</td>
+                          <td>
+
+                            <button  type="button" data-bs-toggle="dropdown" >Trace</button>
+                            <ul class="dropdown-menu identification-dropdown-menu" >
+                              <li value="{{a.package_type}}"><a  href="#Paracetamol"  data-bs-toggle="modal"> Trace</a></li>
+                            </ul>
+
+                          </td>
+                               </tr>
+
+              {%endfor%}
+                             </tbody>
+                             </div>
+
+                           </table>
+                           </div><!--tp1-tabpane-end-->
+
+
+                         </div><!--tp4-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp5" role="tabpanel" aria-labelledby="tp5-tab">
+                         ....
+                         </div><!--tp5-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp6" role="tabpanel" aria-labelledby="tp6-tab">
+                         ....
+                         </div><!--tp6-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp7" role="tabpanel" aria-labelledby="tp7-tab">
+                         ....
+                         </div><!--tp7-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp8" role="tabpanel" aria-labelledby="tp8-tab">
+                         ....
+                         </div><!--tp8-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp9" role="tabpanel" aria-labelledby="tp9-tab">
+                         ....
+                         </div><!--tp9-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp10" role="tabpanel" aria-labelledby="tp10-tab">
+                         ....
+                         </div><!--tp10-tabpane-end-->
+
+                       </div>
+                     </div>
+                     <!--col-end-->
+
+                     </div>
+                     <!--row-end-->
+
+                   </div><!-- main-end -->
+
+                 <!-- </div><!-- container-fluid-end -->
+
+                 <!-- footer-start -->
+                 <!-- <div class="container-fluid p-3 text-center dFooter">
+                 Powered By: © AI DIZITAL, Ltd. All rights reserved.
+                 </div> -->
+                 <!-- footer-end -->
+
+                 <!-- modals-start-here -->
+
+                 <!-- modal-1-start -->
+                 <div class="modal fade" id="Paracetamol" tabindex="-1" aria-labelledby="ParacetamolLabel" aria-hidden="true">
+                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                     <!-- modal-content-start -->
+                     <div class="modal-content testing">
+
+                     </div>
+
+                     <!-- modal-content-end -->
+                   </div>
+                 </div>
+                 <!-- modal-1-end -->
+
+                 <!-- modals-end-here -->
+
+                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+                     <script src="{%static "assets/js/jquery-slim.js"%}"></script>
+                     <script src="{%static "assets/js/datatables.min.js"%}"></script>
+                     <script>
+                       $(document).ready( function () {
+                       $('.table').DataTable();
+                       // $("#identification_table").DataTable();
+                       // $("#identification_table").init();
+                       // $('#identification_table>tbody').hide();
+
+
+                   } );
+
+
+                   $(".identification-dropdown-menu li").click(function (){
+                     var $this = $(this);
+                     var sscc = $this.attr("value");
+                     console.log({ sscc })
+                     var identificationData = {{result | safe}}
+                     var filteredData = identificationData.filter(function(data) {
+                       return data.package_type === sscc;
+                     })
+                     var selectedSsccData = filteredData[0];
+                     var temp = `
+                     <!-- modal-header-start -->
+
+
+
+
+                     <div class="modal-header">
+
+                       <h5 class="modal-title" id="ParacetamolLabel">Packaging Type: ${selectedSsccData.package_type}</h5>
+                       <button type="button" class="btn-close text-white fs-2 mb-2" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></button>
+                     </div>
+                     <!-- modal-header-end -->
+
+                     <!-- modal-body-start -->
+                     <div class="modal-body">
+
+                       <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link active" id="mt1-tab" data-bs-toggle="tab" data-bs-target="#mt1" type="button" role="tab" aria-controls="mt1" aria-selected="true">Product Details</button>
+                         </li>
+
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt3-tab" data-bs-toggle="tab" data-bs-target="#mt3" type="button" role="tab" aria-controls="mt3" aria-selected="false">Entry Point</button>
+                         </li>
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt4-tab" data-bs-toggle="tab" data-bs-target="#mt4" type="button" role="tab" aria-controls="mt4" aria-selected="false">Transaction Details</button>
+                         </li>
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt6-tab" data-bs-toggle="tab" data-bs-target="#mt6" type="button" role="tab" aria-controls="mt6" aria-selected="false">Exit Point</button>
+                         </li>
+
+                       </ul>
+
+                       <div class="tab-content" id="myTabContent">
+
+                         <div class="tab-pane fade show active" id="mt1" role="tabpanel" aria-labelledby="mt1-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                         <div class="row">
+                         <div class="col-12 col-lg-5 p-3">
+                         <img src="{%static "assets/images/paracetamol.jpg"%}" class="border" width="100%"/>
+                         </div>
+                         <!--col-end-->
+
+                         <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+                           <table class="border" width="100%">
+                             <tr>
+                               <td class="p-2">Product Name</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_name}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Brand Name</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.brand_name}</td>
+                             </tr>
+
+
+                             <tr>
+                               <td class="p-2">Descriptions</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_description}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-1">Patient Instructions</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.patient_instruction}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Batch/Lot Number</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.batch_number}</td>
+                             </tr>
+
+                             <tr>
+                               <td class="p-1">Strength & Dosage Form</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.strength}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Ndc</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_ndc}</td>
+                             </tr>
+
+                               <tr>
+                                   <td class="p-2">Mfg Date</td>
+                                   <td class="p-2">: ${selectedSsccData.disptch.product.mfg_date}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="p-2">Exp Date</td>
+                                     <td class="p-2">: ${selectedSsccData.disptch.product.expiry_date}</td>
+                                   </tr>
+                                   <tr>
+                                       <td class="p-2">Mfg Name</td>
+                                       <td class="p-2">: ${selectedSsccData.disptch.product.manufacturer_name}</td>
+                                     </tr>
+                                     <tr>
+                                         <td class="p-2">Mfg Address</td>
+                                         <td class="p-2">: ${selectedSsccData.disptch.sender_location}</td>
+                                       </tr>
+                                       <tr>
+                                           <td class="p-2">Quantity</td>
+                                           <td class="p-2">: ${selectedSsccData}</td>
+                                         </tr>
+
+                           </table>
+
+                           </div>
+                           <!--col-end-->
+                         </div>
+                         <!--row-end-->
+
+                         </div><!--mt1-tab-pane-end-->
+
+
+
+                         <div class="tab-pane fade" id="mt3" role="tabpanel" aria-labelledby="mt3-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Entry Point</th>
+                               <th class="p-2">Orgin Address</th>
+                               <th class="p-2">Entry Point GLN</th>
+                              <th class="p-2">Time Stamp</th>
+
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+
+                               <td class="p-2">${selectedSsccData.disptch.consigner}</td>
+                               <td class="p-2">${selectedSsccData.disptch.sender_location}</td>
+                               <td class="p-2">${selectedSsccData.disptch.sender_loc_gln}</td>
+                               <td class="p-2">${selectedSsccData.location.trans_timestmap}</td>
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt3-tab-pane-end-->
+
+
+                         <div class="tab-pane fade" id="mt4" role="tabpanel" aria-labelledby="mt4-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Transaction Status </th>
+                               <th class="p-2">Event Time</th>
+                               <th class="p-2">Location</th>
+                              <th class="p-2">Temperature</th>
+                              <th class="p-2">Humidity</th>
+                              <th class="p-2">Aisle Location</th>
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.transaction.transaction_type}</td>
+                               <td class="p-2">${selectedSsccData.location.trans_timestmap}</td>
+                               <td class="p-2">${selectedSsccData.location.current_location}</td>
+                               <td class="p-2">${selectedSsccData.location.temperature}</td>
+                               <td class="p-2">${selectedSsccData.location.humidity}</td>
+                               if (${selectedSsccData.transaction.transaction_type} === Intransist)
+                               console.log("x is eaqual to 5 OR 8")
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt4-tab-pane-end-->
+
+                         <div class="tab-pane fade" id="mt6" role="tabpanel" aria-labelledby="mt6-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Receiver Owner GLN</th>
+                               <th class="p-2">Receiver Owner Name</th>
+
+                              <th class="p-2">SSCC No</th>
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.disptch.dispatch_loc_gln}</td>
+                               <td class="p-2">${selectedSsccData.disptch.consignee}</td>
+
+                               <td class="p-2">${selectedSsccData.disptch.sscc_no}</td>
+
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt6-tab-pane-end-->
+
+
+                       </div>
+                       <!--tabs-ends-here-->
+
+                     </div>
+                     <!-- modal-body-end -->
+                     `;
+                     $(".testing").html(temp);
+
+                   })
+
+
+
+
+
+
+
+
+
+                       </script>
+                     <script src="{%static "assets/js/custom.js"%}"></script>
+
+                   </body>
+            {%else%}
+            <h2>wrong</h2>
+            {%endif%}
+            {%endif%}
+
+<!-- distributor dashboar role wise -->
+            {%if i.organization_id == '3' %}
+                  {%if i.role == '1' %}
+                  <div class="row">
+
+                     <div class="col-12 mt-4">
+                       <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link active" id="tp1-tab" data-bs-toggle="tab" data-bs-target="#tp1" type="button" role="tab" aria-controls="tp1" aria-selected="true"><i class="bi bi-shuffle" data-bs-toggle="tooltip" data-bs-placement="top" title="Track"></i></button>
+                         </li>
+
+                       </ul>
+                       <div class="tab-content border bg-white" id="myTabContent">
+                         <div class="tab-pane fade show p-3 active overflow-auto" id="tp1" role="tabpanel" aria-labelledby="tp1-tab">
+                           <div class="d-flex flex-wrap mb-2">
+
+                           <!-- searchBy-start -->
+                           <div class="dropdown me-auto sortBtn">
+                               <!-- <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                               Search by
+                               </button>
+                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                 <li><a class="dropdown-item" href="#">Product</a></li>
+                                 <li><a class="dropdown-item" href="#">Location</a></li>
+                                 <li><a class="dropdown-item" href="#">Owner</a></li>
+                                 <li><a class="dropdown-item" href="#">Transaction</a></li>
+                               </ul> -->
+                               <div class="tab-content border bg-white" id="myTabContent">
+                                 <div class="tab-pane fade show p-3 active overflow-auto" id="tp1" role="tabpanel" aria-labelledby="tp1-tab">
+                                   <div class="d-flex flex-wrap mb-2">
+                                   </div>
+                                   <form class="form-inline ml-auto" id="frmUsers" name="frmUsers" method="GET" action="/trace_identification/">
+                                     <div class="col-md-12 text-center mt-3">
+                                       <input  class="form-control" type="text" placeholder="Enter serial number" aria-label="Search" id=""
+                                           name="trace_identification" style="width:20%" />
+                                           </div>
+                                       <div >
+                                           <button class="button btn  search-btn" type="submit" id="experience">Submit</button></div>
+                                   </form>
+                           <table class="table tt" id="identification_table">
+                             <thead>
+                               <tr>
+                                 <th width="50px"><input type="checkbox"></th>
+                                 <th class="d-flex border-0">
+                                 <!-- <div class="dropdown">
+                                   <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+                                   <i class="bi bi-three-dots-vertical text-white"></i>
+                                   </button>
+                                   <ul class="dropdown-menu" aria-labelledby="db1">
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> View Details</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Recall</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel"></i> Export</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                                   </ul>
+                                 </div> -->
+                                 </th>
+
+                                 <th style="width: 310px;">Product GTIN</th>
+                         <th style="width: 300px;">Product Name</th>
+                         <!-- <th style="width: 200px;">Pallet Serial No</th> -->
+                         <!-- <th style="width: 200px;">Case Serial No</th> -->
+                         <th style="width: 300px;">Product Status</th>
+                         <th style="width: 310px;">Package Type</th>
+                               </tr>
+                             </thead>
+
+                             <tbody >
+              {%for a in result%}
+                               <tr>
+                                 <td class="p-2"><input type="checkbox"></td>
+                                 <td class="p-2">
+                                   <!-- <div class="dropdown">
+                                     <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+                                     <i class="bi bi-three-dots-vertical text-white"></i>
+                                     </button>
+                                     <ul class="dropdown-menu identification-dropdown-menu" aria-labelledby="db1">
+                                       <li value="{{a.package_type}}"><a class="dropdown-item" href="#Paracetamol" data-bs-toggle="modal"><i class="bi bi-eye"></i> View Details</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Recall</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel"></i> Export</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                                     </ul>
+                                   </div> -->
+                                 </td>
+                                 <td class="p-2">{{a.package_case.product.product_code_gtin}}</td>
+                                 <td class="p-2">{{a.disptch.product.product_name}}</td>
+                                 <td class="p-2">{{a.transaction.prod_dispatch.order_status}}</td>
+                                <td class="p-2">{{a.package_pallet.package_type}}</td>
+
+                          <td>
+
+                            <button  type="button" data-bs-toggle="dropdown" >Trace</button>
+                            <ul class="dropdown-menu identification-dropdown-menu" >
+                              <li value="{{a.package_type}}"><a  href="#Paracetamol"  data-bs-toggle="modal"> Trace</a></li>
+                            </ul>
+
+                          </td>
+                               </tr>
+
+              {%endfor%}
+                             </tbody>
+                             </div>
+
+                           </table>
+                           </div><!--tp1-tabpane-end-->
+
+
+                         </div><!--tp4-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp5" role="tabpanel" aria-labelledby="tp5-tab">
+                         ....
+                         </div><!--tp5-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp6" role="tabpanel" aria-labelledby="tp6-tab">
+                         ....
+                         </div><!--tp6-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp7" role="tabpanel" aria-labelledby="tp7-tab">
+                         ....
+                         </div><!--tp7-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp8" role="tabpanel" aria-labelledby="tp8-tab">
+                         ....
+                         </div><!--tp8-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp9" role="tabpanel" aria-labelledby="tp9-tab">
+                         ....
+                         </div><!--tp9-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp10" role="tabpanel" aria-labelledby="tp10-tab">
+                         ....
+                         </div><!--tp10-tabpane-end-->
+
+                       </div>
+                     </div>
+                     <!--col-end-->
+
+                     </div>
+                     <!--row-end-->
+
+                   </div><!-- main-end -->
+
+                 <!-- </div><!-- container-fluid-end -->
+
+                 <!-- footer-start -->
+                 <!-- <div class="container-fluid p-3 text-center dFooter">
+                 Powered By: © AI DIZITAL, Ltd. All rights reserved.
+                 </div> -->
+                 <!-- footer-end -->
+
+                 <!-- modals-start-here -->
+
+                 <!-- modal-1-start -->
+                 <div class="modal fade" id="Paracetamol" tabindex="-1" aria-labelledby="ParacetamolLabel" aria-hidden="true">
+                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                     <!-- modal-content-start -->
+                     <div class="modal-content testing">
+
+                     </div>
+
+                     <!-- modal-content-end -->
+                   </div>
+                 </div>
+                 <!-- modal-1-end -->
+
+                 <!-- modals-end-here -->
+
+                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+                     <script src="{%static "assets/js/jquery-slim.js"%}"></script>
+                     <script src="{%static "assets/js/datatables.min.js"%}"></script>
+                     <script>
+                       $(document).ready( function () {
+                       $('.table').DataTable();
+                       // $("#identification_table").DataTable();
+                       // $("#identification_table").init();
+                       // $('#identification_table>tbody').hide();
+
+
+                   } );
+
+
+                   $(".identification-dropdown-menu li").click(function (){
+                     var $this = $(this);
+                     var sscc = $this.attr("value");
+                     console.log({ sscc })
+                     var identificationData = {{result | safe}}
+                     var filteredData = identificationData.filter(function(data) {
+                       return data.package_type === sscc;
+                     })
+                     var selectedSsccData = filteredData[0];
+                     var temp = `
+                     <!-- modal-header-start -->
+
+
+
+
+                     <div class="modal-header">
+
+
+                       <button type="button" class="btn-close text-white fs-2 mb-2" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></button>
+                     </div>
+                     <!-- modal-header-end -->
+
+                     <!-- modal-body-start -->
+                     <div class="modal-body">
+
+                       <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link active" id="mt1-tab" data-bs-toggle="tab" data-bs-target="#mt1" type="button" role="tab" aria-controls="mt1" aria-selected="true">Production Details</button>
+                         </li>
+
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt3-tab" data-bs-toggle="tab" data-bs-target="#mt3" type="button" role="tab" aria-controls="mt3" aria-selected="false">Packing Details</button>
+                         </li>
+
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt6-tab" data-bs-toggle="tab" data-bs-target="#mt6" type="button" role="tab" aria-controls="mt6" aria-selected="false">Transportation Details</button>
+                         </li>
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt7-tab" data-bs-toggle="tab" data-bs-target="#mt7" type="button" role="tab" aria-controls="mt7" aria-selected="false">Current Owner</button>
+                         </li>
+
+                       </ul>
+
+                       <div class="tab-content" id="myTabContent">
+
+                         <div class="tab-pane fade show active" id="mt1" role="tabpanel" aria-labelledby="mt1-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                         <div class="row">
+                         <div class="col-12 col-lg-5 p-3">
+                            <img src=${selectedSsccData.package_pallet.pallet_images.image_1} class="border" width="100%"/>
+
+                         </div>
+                         <!--col-end-->
+
+                         <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+                           <table class="border" width="100%">
+                             <tr>
+                               <td class="p-2">Owner</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.consigner}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Owner Gln</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.sender_loc_gln}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Location</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.sender_location}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-1">Recorded Time</td>
+                               <td class="p-2">: ${selectedSsccData.location.recorded_time}</td>
+                             </tr>
+
+                           </table>
+
+                           </div>
+                           <!--col-end-->
+                         </div>
+                         <!--row-end-->
+
+                         </div><!--mt1-tab-pane-end-->
+
+
+
+                         <div class="tab-pane fade" id="mt3" role="tabpanel" aria-labelledby="mt3-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Owner GLN</th>
+                                                             <th class="p-2">Operator Name</th>
+                                                             <th class="p-2">Owner</th>
+                                                            <th class="p-2">Package Type</th>
+                                                            <th class="p-2">Package GTIN</th>
+                                                            <th class="p-2">Package SSCC</th>
+                                                            <th class="p-2">Location</th>
+                                                            <th class="p-2">Packing Time</th>
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.disptch.product.manufacturer_gln}</td>
+                                                             <td class="p-2">${selectedSsccData.transaction.operator_name}</td>
+                                                             <td class="p-2">${selectedSsccData.disptch.consigner}</td>
+                                                             <td class="p-2">${selectedSsccData.disptch.package_type}</td>
+                                                             <td class="p-2">${selectedSsccData.package_pallet.package_pallet_gtin}</td>
+                                                             <td class="p-2">${selectedSsccData.disptch.sscc_no}</td>
+                                                             <td class="p-2">${selectedSsccData.disptch.sender_location}</td>
+                                                             <td class="p-2">${selectedSsccData.disptch.product.created_datetime}</td>
+                                           </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt3-tab-pane-end-->
+
+
+                         <div class="tab-pane fade" id="mt4" role="tabpanel" aria-labelledby="mt4-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Owner GLN</th>
+                               <th class="p-2">Owner</th>
+                               <th class="p-2">Aisle Number</th>
+                              <th class="p-2">Location</th>
+                              <th class="p-2">Inbound Time</th>
+                              <th class="p-2">Inbound Operator Name</th>
+                              <th class="p-2">Outbound Time</th>
+                              <th class="p-2">Outbound Operator</th>
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData}</td>
+                               <td class="p-2">${selectedSsccData}</td>
+                               <td class="p-2">${selectedSsccData}</td>
+                               <td class="p-2">${selectedSsccData}</td>
+                               <td class="p-2">${selectedSsccData}</td>
+                               <td class="p-2">${selectedSsccData}</td>
+                               <td class="p-2">${selectedSsccData}</td>
+                               <td class="p-2">${selectedSsccData}</td>
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt4-tab-pane-end-->
+
+                         <div class="tab-pane fade" id="mt6" role="tabpanel" aria-labelledby="mt6-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Temparature</th>
+                               <th class="p-2">Humidity</th>
+
+                               <th class="p-2">Owner</th>
+                              <th class="p-2">Entry Point</th>
+                              <th class="p-2">Exit Point</th>
+                              <th class="p-2">Start Time</th>
+                              <th class="p-2">End Time</th>
+                              <th class="p-2">Driver</th>
+                               </tr>
+                               </thead>
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.location.temperature}</td>
+                               <td class="p-2">${selectedSsccData.location.humidity}</td>
+
+                               <td class="p-2">${selectedSsccData.location.prod_dispatch.lsp_provider}</td>
+                               <td class="p-2">${selectedSsccData.location.prod_dispatch.consigner}</td>
+                               <td class="p-2">${selectedSsccData.location.prod_dispatch.consignee}</td>
+                               <td class="p-2">${selectedSsccData.location.start_time}</td>
+                                <td class="p-2">${selectedSsccData.location.end_time}</td>
+                                 <td class="p-2">${selectedSsccData.transaction.driver_name}</td>
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt6-tab-pane-end-->
+
+                         <div class="tab-pane fade" id="mt7" role="tabpanel" aria-labelledby="mt7-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Time</th>
+                               <th class="p-2">Owner GLN</th>
+                               <th class="p-2">Operator Name</th>
+                              <th class="p-2">Company</th>
+                              <th class="p-2">Location</th>
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.location.end_time}</td>
+                               <td class="p-2">${selectedSsccData.location.prod_dispatch.dispatch_loc_gln}</td>
+                               <td class="p-2">${selectedSsccData.transaction.operator_name}</td>
+                               <td class="p-2">${selectedSsccData.location.prod_dispatch.consignee}</td>
+                               <td class="p-2">${selectedSsccData.disptch.dispatch_location}</td>
+
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt7-tab-pane-end-->
+
+
+                       </div>
+                       <!--tabs-ends-here-->
+
+                     </div>
+                     <!-- modal-body-end -->
+                     `;
+                     $(".testing").html(temp);
+
+                   })
+
+
+
+
+
+
+
+
+
+                       </script>
+                     <script src="{%static "assets/js/custom.js"%}"></script>
+
+                   </body>
+                  {%else%}
+                  <h2>wrong</h2>
+                  {%endif%}
+                  {%endif%}
+
+
+<!-- logistic service provider dashboar role wise -->
+                  {%if i.organization_id == '4' %}
+                        {%if i.role == '1' %}
+                        <div class="row">
+
+                     <div class="col-12 mt-4">
+                       <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link active" id="tp1-tab" data-bs-toggle="tab" data-bs-target="#tp1" type="button" role="tab" aria-controls="tp1" aria-selected="true"><i class="bi bi-shuffle" data-bs-toggle="tooltip" data-bs-placement="top" title="Track"></i></button>
+                         </li>
+
+                       </ul>
+                       <div class="tab-content border bg-white" id="myTabContent">
+                         <div class="tab-pane fade show p-3 active overflow-auto" id="tp1" role="tabpanel" aria-labelledby="tp1-tab">
+                           <div class="d-flex flex-wrap mb-2">
+
+                           <!-- searchBy-start -->
+                           <div class="dropdown me-auto sortBtn">
+                               <!-- <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                               Search by
+                               </button>
+                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                 <li><a class="dropdown-item" href="#">Product</a></li>
+                                 <li><a class="dropdown-item" href="#">Location</a></li>
+                                 <li><a class="dropdown-item" href="#">Owner</a></li>
+                                 <li><a class="dropdown-item" href="#">Transaction</a></li>
+                               </ul> -->
+                           </div>
+                           <!-- searchBy-end -->
+                           <!-- searchBy-end -->
+
+                           <!-- <button type="button" class="btn btn-white me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                           <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                           <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                           <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button> -->
+                           </div>
+                           <form class="form-inline ml-auto" id="frmUsers" name="frmUsers" method="GET" action="/trace_identification/">
+                             <div class="col-md-12 text-center mt-3">
+                               <input  class="form-control" type="text" placeholder="Enter serial number" aria-label="Search" id=""
+                                   name="trace_identification" style="width:20%" />
+                                   </div>
+                               <div >
+                                   <button class="button btn  search-btn" type="submit" id="experience">Submit</button>
+                           </form>
+                           <table class="table tt" id="identification_table">
+                             <thead>
+                               <tr>
+                                 <th width="50px"><input type="checkbox"></th>
+                                 <th class="d-flex border-0">
+                                 <!-- <div class="dropdown">
+                                   <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+                                   <i class="bi bi-three-dots-vertical text-white"></i>
+                                   </button>
+                                   <ul class="dropdown-menu" aria-labelledby="db1">
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> View Details</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Recall</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel"></i> Export</a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                                   </ul>
+                                 </div> -->
+                                 </th>
+
+                                 <th style="width: 310px;">Product GTIN</th>
+                         <th style="width: 300px;">Product Name</th>
+                         <!-- <th style="width: 200px;">Pallet Serial No</th> -->
+                         <!-- <th style="width: 200px;">Case Serial No</th> -->
+                         <th style="width: 300px;">Product Status</th>
+                         <th style="width: 310px;">Package Type</th>
+                               </tr>
+                             </thead>
+
+                             <tbody >
+              {%for a in result%}
+                               <tr>
+                                 <td class="p-2"><input type="checkbox"></td>
+                                 <td class="p-2">
+                                   <!-- <div class="dropdown">
+                                     <button class="btn dropdown-toggle cD" type="button" id="db1" data-bs-toggle="dropdown" aria-expanded="false">
+                                     <i class="bi bi-three-dots-vertical text-white"></i>
+                                     </button>
+                                     <ul class="dropdown-menu identification-dropdown-menu" aria-labelledby="db1">
+                                       <li value="{{a.package_type}}"><a class="dropdown-item" href="#Paracetamol" data-bs-toggle="modal"><i class="bi bi-eye"></i> View Details</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-printer"></i> Recall</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel"></i> Export</a></li>
+                                       <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                                     </ul>
+                                   </div> -->
+                                 </td>
+                                 <td class="p-2">{{a.disptch.product.product_name}}</td>
+                           <td class="p-2">{{a.disptch.consigner}}</td>
+                          <td class="p-2">{{a.transaction.transaction_type}}</td>
+                          <td class="p-2">{{a.disptch.consignee}}</td>
+                          <td>
+
+                            <button  type="button" data-bs-toggle="dropdown" >Trace</button>
+                            <ul class="dropdown-menu identification-dropdown-menu" >
+                              <li value="{{a.package_type}}"><a  href="#Paracetamol"  data-bs-toggle="modal"> Trace</a></li>
+                            </ul>
+
+                          </td>
+                               </tr>
+
+              {%endfor%}
+                             </tbody>
+                             </div>
+
+                           </table>
+                           </div><!--tp1-tabpane-end-->
+
+
+                         </div><!--tp4-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp5" role="tabpanel" aria-labelledby="tp5-tab">
+                         ....
+                         </div><!--tp5-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp6" role="tabpanel" aria-labelledby="tp6-tab">
+                         ....
+                         </div><!--tp6-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp7" role="tabpanel" aria-labelledby="tp7-tab">
+                         ....
+                         </div><!--tp7-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp8" role="tabpanel" aria-labelledby="tp8-tab">
+                         ....
+                         </div><!--tp8-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp9" role="tabpanel" aria-labelledby="tp9-tab">
+                         ....
+                         </div><!--tp9-tabpane-end-->
+
+                         <div class="tab-pane fade" id="tp10" role="tabpanel" aria-labelledby="tp10-tab">
+                         ....
+                         </div><!--tp10-tabpane-end-->
+
+                       </div>
+                     </div>
+                     <!--col-end-->
+
+                     </div>
+                     <!--row-end-->
+
+                   </div><!-- main-end -->
+
+                 <!-- </div><!-- container-fluid-end -->
+
+                 <!-- footer-start -->
+                 <!-- <div class="container-fluid p-3 text-center dFooter">
+                 Powered By: © AI DIZITAL, Ltd. All rights reserved.
+                 </div> -->
+                 <!-- footer-end -->
+
+                 <!-- modals-start-here -->
+
+                 <!-- modal-1-start -->
+                 <div class="modal fade" id="Paracetamol" tabindex="-1" aria-labelledby="ParacetamolLabel" aria-hidden="true">
+                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                     <!-- modal-content-start -->
+                     <div class="modal-content testing">
+
+                     </div>
+
+                     <!-- modal-content-end -->
+                   </div>
+                 </div>
+                 <!-- modal-1-end -->
+
+                 <!-- modals-end-here -->
+
+                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+                     <script src="{%static "assets/js/jquery-slim.js"%}"></script>
+                     <script src="{%static "assets/js/datatables.min.js"%}"></script>
+                     <script>
+                       $(document).ready( function () {
+                       $('.table').DataTable();
+                       // $("#identification_table").DataTable();
+                       // $("#identification_table").init();
+                       // $('#identification_table>tbody').hide();
+
+
+                   } );
+
+
+                   $(".identification-dropdown-menu li").click(function (){
+                     var $this = $(this);
+                     var sscc = $this.attr("value");
+                     console.log({ sscc })
+                     var identificationData = {{result | safe}}
+                     var filteredData = identificationData.filter(function(data) {
+                       return data.package_type === sscc;
+                     })
+                     var selectedSsccData = filteredData[0];
+                     var temp = `
+                     <!-- modal-header-start -->
+
+
+
+
+                     <div class="modal-header">
+
+                       <h5 class="modal-title" id="ParacetamolLabel">Packaging Type: ${selectedSsccData.package_type}</h5>
+                       <button type="button" class="btn-close text-white fs-2 mb-2" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></button>
+                     </div>
+                     <!-- modal-header-end -->
+
+                     <!-- modal-body-start -->
+                     <div class="modal-body">
+
+                       <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link active" id="mt1-tab" data-bs-toggle="tab" data-bs-target="#mt1" type="button" role="tab" aria-controls="mt1" aria-selected="true">Product Details</button>
+                         </li>
+
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt3-tab" data-bs-toggle="tab" data-bs-target="#mt3" type="button" role="tab" aria-controls="mt3" aria-selected="false">Entry Point</button>
+                         </li>
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt4-tab" data-bs-toggle="tab" data-bs-target="#mt4" type="button" role="tab" aria-controls="mt4" aria-selected="false">Transaction Details</button>
+                         </li>
+
+                         <li class="nav-item" role="presentation">
+                           <button class="nav-link" id="mt6-tab" data-bs-toggle="tab" data-bs-target="#mt6" type="button" role="tab" aria-controls="mt6" aria-selected="false">Exit Point</button>
+                         </li>
+
+                       </ul>
+
+                       <div class="tab-content" id="myTabContent">
+
+                         <div class="tab-pane fade show active" id="mt1" role="tabpanel" aria-labelledby="mt1-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                         <div class="row">
+                         <div class="col-12 col-lg-5 p-3">
+                         <img src="{%static "assets/images/paracetamol.jpg"%}" class="border" width="100%"/>
+                         </div>
+                         <!--col-end-->
+
+                         <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+                           <table class="border" width="100%">
+                             <tr>
+                               <td class="p-2">Product Name</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_name}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Brand Name</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.brand_name}</td>
+                             </tr>
+
+
+                             <tr>
+                               <td class="p-2">Descriptions</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_description}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-1">Patient Instructions</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.patient_instruction}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Batch/Lot Number</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.batch_number}</td>
+                             </tr>
+
+                             <tr>
+                               <td class="p-1">Strength & Dosage Form</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.strength}</td>
+                             </tr>
+                             <tr>
+                               <td class="p-2">Ndc</td>
+                               <td class="p-2">: ${selectedSsccData.disptch.product.product_ndc}</td>
+                             </tr>
+
+                               <tr>
+                                   <td class="p-2">Mfg Date</td>
+                                   <td class="p-2">: ${selectedSsccData.disptch.product.mfg_date}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="p-2">Exp Date</td>
+                                     <td class="p-2">: ${selectedSsccData.disptch.product.expiry_date}</td>
+                                   </tr>
+                                   <tr>
+                                       <td class="p-2">Mfg Name</td>
+                                       <td class="p-2">: ${selectedSsccData.disptch.product.manufacturer_name}</td>
+                                     </tr>
+                                     <tr>
+                                         <td class="p-2">Mfg Address</td>
+                                         <td class="p-2">: ${selectedSsccData.disptch.sender_location}</td>
+                                       </tr>
+                                       <tr>
+                                           <td class="p-2">Quantity</td>
+                                           <td class="p-2">: ${selectedSsccData}</td>
+                                         </tr>
+
+                           </table>
+
+                           </div>
+                           <!--col-end-->
+                         </div>
+                         <!--row-end-->
+
+                         </div><!--mt1-tab-pane-end-->
+
+
+
+                         <div class="tab-pane fade" id="mt3" role="tabpanel" aria-labelledby="mt3-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Entry Point</th>
+                               <th class="p-2">Orgin Address</th>
+                               <th class="p-2">Entry Point GLN</th>
+                              <th class="p-2">Time Stamp</th>
+
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+
+                               <td class="p-2">${selectedSsccData.disptch.consigner}</td>
+                               <td class="p-2">${selectedSsccData.disptch.sender_location}</td>
+                               <td class="p-2">${selectedSsccData.disptch.sender_loc_gln}</td>
+                               <td class="p-2">${selectedSsccData.location.trans_timestmap}</td>
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt3-tab-pane-end-->
+
+
+                         <div class="tab-pane fade" id="mt4" role="tabpanel" aria-labelledby="mt4-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Transaction Status </th>
+                               <th class="p-2">Event Time</th>
+                               <th class="p-2">Location</th>
+                              <th class="p-2">Temperature</th>
+                              <th class="p-2">Humidity</th>
+                              <th class="p-2">Aisle Location</th>
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.transaction.transaction_type}</td>
+                               <td class="p-2">${selectedSsccData.location.trans_timestmap}</td>
+                               <td class="p-2">${selectedSsccData.location.current_location}</td>
+                               <td class="p-2">${selectedSsccData.location.temperature}</td>
+                               <td class="p-2">${selectedSsccData.location.humidity}</td>
+                               if (${selectedSsccData.transaction.transaction_type} === Intransist)
+                               console.log("x is eaqual to 5 OR 8")
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt4-tab-pane-end-->
+
+                         <div class="tab-pane fade" id="mt6" role="tabpanel" aria-labelledby="mt6-tab">
+
+                           <div class="d-flex flex-wrap mb-2">
+
+                             <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                             <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                             <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                           </div>
+
+                           <div class="row">
+                             <div class="col-12 col-lg-5 p-3">
+
+                             </div>
+                             <!--col-end-->
+
+                             <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                               <table class="border" width="100%">
+
+                               <thead>
+                               <tr>
+                               <th class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </th>
+                               <th class="p-2">Receiver Owner GLN</th>
+                               <th class="p-2">Receiver Owner Name</th>
+
+                              <th class="p-2">SSCC No</th>
+
+                               </tr>
+                               </thead>
+
+                               <tbody>
+                               <tr>
+                               <td class="ps-2 pt-2">
+                                 <div class="form-check">
+                                   <input class="form-check-input" type="checkbox">
+                                 </div>
+                               </td>
+                               <td class="p-2">${selectedSsccData.disptch.dispatch_loc_gln}</td>
+                               <td class="p-2">${selectedSsccData.disptch.consignee}</td>
+
+                               <td class="p-2">${selectedSsccData.disptch.sscc_no}</td>
+
+
+                               </tr>
+
+                               </tbody>
+
+                               </table>
+                               </div>
+                               <!--col-end-->
+                             </div>
+                             <!--row-end-->
+
+                         </div><!--mt6-tab-pane-end-->
+
+
+                       </div>
+                       <!--tabs-ends-here-->
+
+                     </div>
+                     <!-- modal-body-end -->
+                     `;
+                     $(".testing").html(temp);
+
+                   })
+
+
+
+
+
+
+
+
+
+                       </script>
+                     <script src="{%static "assets/js/custom.js"%}"></script>
+
+                   </body>
+                        {%else%}
+                        <h2>wrong</h2>
+                        {%endif%}
+                        {%endif%}
+
+<!-- Retailer dashboar role wise -->
+                        {%if i.organization_id == '5' %}
+                              {%if i.role == '1' %}
+                              <div class="row">
+
+                                             <div class="col-12 mt-4">
+                                               <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
+                                                 <li class="nav-item" role="presentation">
+                                                   <button class="nav-link active" id="tp1-tab" data-bs-toggle="tab" data-bs-target="#tp1" type="button" role="tab" aria-controls="tp1" aria-selected="true"><i class="bi bi-shuffle" data-bs-toggle="tooltip" data-bs-placement="top" title="Track"></i></button>
+                                                 </li>
+
+                                               </ul>
+                                               <div class="tab-content border bg-white" id="myTabContent">
+                                                 <div class="tab-pane fade show p-3 active overflow-auto" id="tp1" role="tabpanel" aria-labelledby="tp1-tab">
+                                                   <div class="d-flex flex-wrap mb-2">
+
+                                                   <!-- searchBy-start -->
+                                                   <div class="dropdown me-auto sortBtn">
+                                                       <!-- <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                       Search by
+                                                       </button>
+                                                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                         <li><a class="dropdown-item" href="#">Product</a></li>
+                                                         <li><a class="dropdown-item" href="#">Location</a></li>
+                                                         <li><a class="dropdown-item" href="#">Owner</a></li>
+                                                         <li><a class="dropdown-item" href="#">Transaction</a></li>
+                                                       </ul> -->
+                                                   </div>
+                                                   <!-- searchBy-end -->
+                                                   <!-- searchBy-end -->
+
+                                                   <!-- <button type="button" class="btn btn-white me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                                                   <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                                                   <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                                                   <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button> -->
+                                                   </div>
+                                                   <form  id="frmUsers" name="frmUsers" method="GET" action="/trace_identification/">
+                                                     <div class="col-md-12 text-center mt-3">
+                                                       <input  class="form-control" type="text" placeholder="Enter Unit Serial No" aria-label="Search" id=""
+                                                           name="trace_identification" style="width:20%" />
+                                                           </div>
+                                                       <div >
+                                                           <button class="button btn  search-btn" type="submit" id="experience">Submit</button>
+
+                                                   </form>
+                                                   <table class="table tt" id="identification_table">
+                                                     <thead>
+                                                       <tr>
+                                                         <th width="50px"><input type="checkbox"></th>
+                                                         <th class="d-flex border-0">
+
+                                                         </th>
+
+                                                         <th style="width: 310px;">Product GTIN</th>
+                                                 <th style="width: 300px;">Product Name</th>
+                                                 <!-- <th style="width: 200px;">Pallet Serial No</th> -->
+                                                 <!-- <th style="width: 200px;">Case Serial No</th> -->
+                                                 <th style="width: 300px;">Product Status</th>
+                                                 <th style="width: 310px;">Package Type</th>
+                                                       </tr>
+                                                     </thead>
+
+                                                     <tbody >
+                                      {%for a in result%}
+                                                       <tr>
+                                                         <td class="p-2"><input type="checkbox"></td>
+                                                         <td class="p-2">
+
+                                                         </td>
+
+                                                         <td class="p-2">{{a.package_case.product.product_code_gtin}}</td>
+                                                         <td class="p-2">{{a.disptch.product.product_name}}</td>
+                                                         <td class="p-2">{{a.package_pallet.product_disp.order_status}}</td>
+                                                        <td class="p-2">{{a.package_unit.package_type}}</td>
+                                                  <td>
+
+                                                    <button  type="button" data-bs-toggle="dropdown" >Trace</button>
+                                                    <ul class="dropdown-menu identification-dropdown-menu" >
+                                                      <li value="{{a.disptch.sscc_no}}"><a class="viewdetailsid2"  href="#Paracetamol"  data-bs-toggle="modal"> Trace</a></li>
+                                                    </ul>
+                                                       </tr>
+
+
+
+                                      {%endfor%}
+                                                     </tbody>
+                                                     </div>
+
+                                                   </table>
+
+
+
+
+
+                                                   </div><!--tp1-tabpane-end-->
+
+
+                                                 </div><!--tp4-tabpane-end-->
+
+                                                 <div class="tab-pane fade" id="tp5" role="tabpanel" aria-labelledby="tp5-tab">
+                                                 ....
+                                                 </div><!--tp5-tabpane-end-->
+
+                                                 <div class="tab-pane fade" id="tp6" role="tabpanel" aria-labelledby="tp6-tab">
+                                                 ....
+                                                 </div><!--tp6-tabpane-end-->
+
+                                                 <div class="tab-pane fade" id="tp7" role="tabpanel" aria-labelledby="tp7-tab">
+                                                 ....
+                                                 </div><!--tp7-tabpane-end-->
+
+                                                 <div class="tab-pane fade" id="tp8" role="tabpanel" aria-labelledby="tp8-tab">
+                                                 ....
+                                                 </div><!--tp8-tabpane-end-->
+
+                                                 <div class="tab-pane fade" id="tp9" role="tabpanel" aria-labelledby="tp9-tab">
+                                                 ....
+                                                 </div><!--tp9-tabpane-end-->
+
+                                                 <div class="tab-pane fade" id="tp10" role="tabpanel" aria-labelledby="tp10-tab">
+                                                 ....
+                                                 </div><!--tp10-tabpane-end-->
+
+                                               </div>
+                                             </div>
+                                             <!--col-end-->
+
+                                             </div>
+                                             <!--row-end-->
+
+                                           </div><!-- main-end -->
+
+                                         <!-- </div><!-- container-fluid-end -->
+
+                                         <!-- footer-start -->
+                                         <!-- <div class="container-fluid p-3 text-center dFooter">
+                                         Powered By: © AI DIZITAL, Ltd. All rights reserved.
+                                         </div> -->
+                                         <!-- footer-end -->
+
+                                         <!-- modals-start-here -->
+
+                                         <!-- modal-1-start -->
+                                         <div class="modal fade" id="Paracetamol" tabindex="-1" aria-labelledby="ParacetamolLabel" aria-hidden="true">
+                                           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                                             <!-- modal-content-start -->
+                                             <div class="modal-content testing">
+
+                                             </div>
+
+                                             <!-- modal-content-end -->
+                                           </div>
+                                         </div>
+                                         <!-- modal-1-end -->
+
+                                         <!-- modals-end-here -->
+
+                                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+                                             <script src="{%static "assets/js/jquery-slim.js"%}"></script>
+                                             <script src="{%static "assets/js/datatables.min.js"%}"></script>
+                                             <script>
+                                               $(document).ready( function () {
+                                               $('.table').DataTable();
+                                               // $("#identification_table").DataTable();
+                                               // $("#identification_table").init();
+                                               // $('#identification_table>tbody').hide();
+
+
+                                           } );
+
+
+                                           $(".identification-dropdown-menu li").click(function (){
+                                             var $this = $(this);
+                                             var sscc = $this.attr("value");
+                                             console.log({ sscc })
+                                             var identificationData = {{result | safe}}
+                                             var filteredData = identificationData.filter(function(data) {
+                                               return data.disptch.sscc_no === sscc;
+                                             })
+                                             var selectedSsccData = filteredData[0];
+                                             var temp = `
+                                             <!-- modal-header-start -->
+
+                                             <div class="modal-header" style="width: 80rem; height:7rem;">
+
+
+
+                                               <div class="container px-3 px-md-2 py-2 mx-auto">
+                                                   <div class="card" style="width: 60rem; height:6rem; bottom:7rem;">
+
+                                                       <div class="row d-flex justify-content-top">
+                                                           <div class="col-14">
+                                                               <ul id="progressbar" class="text-left">
+                                                                 <input type="hidden" name="" value="${selectedSsccData.package_pallet.product_disp.order_status}" id="status">
+                                                                   <li class="active step1">Production (${selectedSsccData.disptch.product.created_datetime})</li>
+                                                                   <li class="active step2">Packing (${selectedSsccData.disptch.product.last_updated_datetime})</li>
+                                                                   <li class="active step3">Transportation (${selectedSsccData.disptch.packaging_time})</li>
+                                                                   <li class="active step4">Delivered (${selectedSsccData.disptch.order_status})</li>
+                                                               </ul>
+                                                           </div>
+                                                       </div>
+
+                                                       </div>
+                                                   </div>
+
+
+
+
+                                               <button type="button" class="btn-close text-white fs-2 mb-2" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></button>
+                                             </div>
+                                             <!-- modal-header-end -->
+
+                                             <!-- modal-body-start -->
+                                             <div class="modal-body">
+
+                                               <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                                                 <li class="nav-item" role="presentation">
+                                                   <button class="nav-link active" id="mt2-tab" data-bs-toggle="tab" data-bs-target="#mt2" type="button" role="tab" aria-controls="mt2" aria-selected="true">Production Details</button>
+                                                 </li>
+                                                 <li class="nav-item" role="presentation">
+                                                   <button class="nav-link" id="mt1-tab" data-bs-toggle="tab" data-bs-target="#mt1" type="button" role="tab" aria-controls="mt1" aria-selected="true">Packing Details</button>
+                                                 </li>
+
+
+                                                 <li class="nav-item" role="presentation">
+                                                   <button class="nav-link" id="mt3-tab" data-bs-toggle="tab" data-bs-target="#mt3" type="button" role="tab" aria-controls="mt3" aria-selected="false">Transportation Details</button>
+                                                 </li>
+
+
+                                                 <li class="nav-item" role="presentation">
+                                                   <button class="nav-link" id="mt6-tab" data-bs-toggle="tab" data-bs-target="#mt6" type="button" role="tab" aria-controls="mt6" aria-selected="false">Exit Point</button>
+                                                 </li>
+
+
+
+                                               </ul>
+
+                                               <div class="tab-content" id="myTabContent">
+
+                                                 <div class="tab-pane fade " id="mt1" role="tabpanel" aria-labelledby="mt1-tab">
+
+                                                   <div class="d-flex flex-wrap mb-2">
+
+                                                     <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                                                     <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                                                   </div>
+
+                                                 <div class="row">
+                                                 <div class="col-12 col-lg-5 p-3">
+
+
+
+                                                    <img src=${selectedSsccData.image} class="border" width="100%"/>
+                                                 </div>
+                                                 <!--col-end-->
+
+                                                 <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+                                                   <table class="border" width="100%">
+                                                     <tr>
+                                                       <td class="p-2">Owner Gln</td>
+                                                       <td class="p-2">: ${selectedSsccData.disptch.sender_loc_gln}</td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td class="p-2">Operator Name</td>
+                                                       <td class="p-2">: ${selectedSsccData.transaction.operator_name}</td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td class="p-2">Owner</td>
+                                                       <td class="p-2">: ${selectedSsccData.disptch.consigner}</td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td class="p-1">Package Type</td>
+                                                       <td class="p-2">: ${selectedSsccData.package_unit.package_type}</td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td class="p-2">Case GTIN</td>
+                                                       <td class="p-2">: ${selectedSsccData.package_case.package_case_gtin}</td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td class="p-2">Unit GTIN</td>
+                                                       <td class="p-2">: ${selectedSsccData.package_unit.package_unit_gtin}</td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td class="p-1">Case Serial No</td>
+                                                       <td class="p-2">: ${selectedSsccData.package_case.package_case_sn}</td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td class="p-2">Location</td>
+                                                       <td class="p-2">: ${selectedSsccData.disptch.sender_location}</td>
+                                                     </tr>
+
+                                                         <tr>
+                                                             <td class="p-2">Inner Package Count of Units</td>
+                                                             <td class="p-2">: ${selectedSsccData.package_unit.inner_package_count}</td>
+                                                           </tr>
+                                                           <tr>
+                                                               <td class="p-2">Packing Time</td>
+                                                               <td class="p-2">: ${selectedSsccData.disptch.packaging_time}</td>
+                                                             </tr>
+                                                   </table>
+
+                                                   </div>
+
+                                                   <!--col-end-->
+                                                 </div>
+                                                 <!--row-end-->
+
+                                                 </div><!--mt1-tab-pane-end-->
+
+
+
+                                                 <div class="tab-pane fade " id="mt3" role="tabpanel" aria-labelledby="mt3-tab">
+
+                                                   <div class="d-flex flex-wrap mb-2">
+
+                                                     <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                                                     <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                                                   </div>
+
+                                                   <div class="row">
+                                                     <div class="col-12 col-lg-5 p-3">
+                                                       <embed src="${selectedSsccData.package_pallet.pallet_images.file}" type="application/pdf" width="100%" height="300px" />
+                                                     </div>
+                                                     <!--col-end-->
+
+                                                     <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                                                       <table class="border" width="100%">
+
+                                                       <thead>
+                                                       <tr>
+                                                       <th class="ps-2 pt-2">
+                                                         <div class="form-check">
+                                                           <input class="form-check-input" type="checkbox">
+                                                         </div>
+                                                       </th>
+                                                       <th class="p-2">Temparature</th>
+                                                       <th class="p-2">Humidity</th>
+                                                       <th class="p-2">Owner GLN</th>
+                                                       <th class="p-2">Owner</th>
+                                                      <th class="p-2">Entry Point</th>
+                                                      <th class="p-2">Exit Point</th>
+                                                      <th class="p-2">Start Time</th>
+                                                      <th class="p-2">End Time</th>
+
+                                                       </tr>
+                                                       </thead>
+
+                                                       <tbody>
+                                                       <tr>
+                                                       <td class="ps-2 pt-2">
+                                                         <div class="form-check">
+                                                           <input class="form-check-input" type="checkbox">
+                                                         </div>
+                                                       </td>
+
+                                                       <td class="p-2">${selectedSsccData.location.temperature}</td>
+                                                       <td class="p-2">${selectedSsccData.location.humidity}</td>
+                                                       <td class="p-2">${selectedSsccData.package_pallet.product_disp.sender_loc_gln}</td>
+                                                       <td class="p-2">${selectedSsccData.disptch.lsp_provider}</td>
+                                                       <td class="p-2">${selectedSsccData.package_pallet.product_disp.consigner}</td>
+                                                       <td class="p-2">${selectedSsccData.package_pallet.product_disp.consignee}</td>
+                                                       <td class="p-2">${selectedSsccData.location.start_time}</td>
+                                                        <td class="p-2">${selectedSsccData.location.end_time}</td>
+
+
+                                                       </tr>
+
+                                                       </tbody>
+
+                                                       </table>
+                                                       </div>
+                                                       <!--col-end-->
+                                                     </div>
+                                                     <!--row-end-->
+
+                                                 </div><!--mt3-tab-pane-end-->
+
+
+                                                 <div class="tab-pane fade " id="mt4" role="tabpanel" aria-labelledby="mt4-tab">
+
+                                                   <div class="d-flex flex-wrap mb-2">
+
+                                                     <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                                                     <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                                                   </div>
+
+                                                   <div class="row">
+                                                     <div class="col-12 col-lg-5 p-3">
+
+                                                     </div>
+                                                     <!--col-end-->
+
+                                                     <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                                                       <table class="border" width="100%">
+
+                                                       <thead>
+                                                       <tr>
+                                                       <th class="ps-2 pt-2">
+                                                         <div class="form-check">
+                                                           <input class="form-check-input" type="checkbox">
+                                                         </div>
+                                                       </th>
+                                                       <th class="p-2">Owner</th>
+                                                       <th class="p-2">Owner GLN</th>
+                                                       <th class="p-2">Inbound Time</th>
+                                                       <th class="p-2">Inbound Operator Name</th>
+                                                       <th class="p-2">Outbound Time</th>
+                                                       <th class="p-2">Outbound Operator</th>
+                                                       <th class="p-2">Aisle Number</th>
+                                                      <th class="p-2">Location</th>
+                                                       </tr>
+                                                       </thead>
+
+                                                       <tbody>
+                                                       <tr>
+                                                       <td class="ps-2 pt-2">
+                                                         <div class="form-check">
+                                                           <input class="form-check-input" type="checkbox">
+                                                         </div>
+                                                       </td>
+                                                       <td class="p-2">${selectedSsccData}</td>
+                                                       <td class="p-2">${selectedSsccData}</td>
+                                                       <td class="p-2">${selectedSsccData}</td>
+                                                       <td class="p-2">${selectedSsccData}</td>
+                                                       <td class="p-2">${selectedSsccData}</td>
+                                                       <td class="p-2">${selectedSsccData}</td>
+                                                       <td class="p-2">${selectedSsccData}</td>
+                                                      <td class="p-2">${selectedSsccData}</td>
+
+
+                                                       </tr>
+
+                                                       </tbody>
+
+                                                       </table>
+                                                       </div>
+                                                       <!--col-end-->
+                                                     </div>
+                                                     <!--row-end-->
+
+                                                 </div><!--mt4-tab-pane-end-->
+
+                                                 <div class="tab-pane fade" id="mt6" role="tabpanel" aria-labelledby="mt6-tab">
+
+                                                   <div class="d-flex flex-wrap mb-2">
+
+                                                     <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                                                     <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                                                   </div>
+
+                                                   <div class="row">
+                                                     <div class="col-12 col-lg-5 p-3">
+                                                       <img src="{%static "assets/images/download.png"%}" class="border" width="90%"/>
+
+                                                     </div>
+                                                     <!--col-end-->
+
+                                                     <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                                                       <table class="border" width="100%">
+
+                                                       <thead>
+                                                       <tr>
+                                                       <th class="ps-2 pt-2">
+                                                         <div class="form-check">
+                                                           <input class="form-check-input" type="checkbox">
+                                                         </div>
+                                                       </th>
+                                                       <th class="p-2">Time</th>
+                                                       <th class="p-2">Owner GLN</th>
+                                                       <th class="p-2">Operator Name</th>
+                                                      <th class="p-2">Company</th>
+                                                      <th class="p-2">Location</th>
+                                                       </tr>
+                                                       </thead>
+                                                       <tbody>
+                                                       <tr>
+                                                       <td class="ps-2 pt-2">
+                                                         <div class="form-check">
+                                                           <input class="form-check-input" type="checkbox">
+                                                         </div>
+                                                       </td>
+                                                       <td class="p-2">${selectedSsccData.location.end_time}</td>
+                                                       <td class="p-2">${selectedSsccData.package_pallet.product_disp.dispatch_loc_gln}</td>
+                                                       <td class="p-2">${selectedSsccData.transaction.operator_name}</td>
+                                                       <td class="p-2">${selectedSsccData.package_pallet.product_disp.consignee}</td>
+                                                       <td class="p-2">${selectedSsccData.disptch.dispatch_location}</td>
+
+
+                                                       </tr>
+
+                                                       </tbody>
+
+                                                       </table>
+                                                       </div>
+                                                       <!--col-end-->
+                                                     </div>
+                                                     <!--row-end-->
+
+                                                 </div><!--mt6-tab-pane-end-->
+
+
+                                                 <div class="tab-pane fade show active" id="mt2" role="tabpanel" aria-labelledby="mt2-tab">
+
+                                                   <div class="d-flex flex-wrap mb-2">
+
+                                                     <button type="button" class="btn btn-white ms-lg-auto me-2"><i class="bi bi-arrow-repeat" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-printer" data-bs-toggle="tooltip" data-bs-placement="top" title="Print/PDF"></i></button>
+                                                     <button type="button" class="btn btn-white me-2"><i class="bi bi-file-earmark-excel" data-bs-toggle="tooltip" data-bs-placement="top" title="Export XLS"></i></button>
+                                                     <button type="button" class="btn btn-white"><i class="bi bi-box-arrow-in-down" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"></i></button>
+
+                                                   </div>
+
+                                                   <div class="row">
+                                                     <div class="col-12 col-lg-5 p-3">
+                                                       <video width="440" height="310" controls>
+                                                         <source src="${selectedSsccData.package_pallet.pallet_images.video}" type="video/mp4">
+                                                       </video>
+                                                     </div>
+                                                     <!--col-end-->
+
+                                                     <div class="col-12 col-lg-7 p-3" style="overflow-x:auto;">
+
+                                                       <table class="border" width="100%">
+
+                                                       <thead>
+                                                       <tr>
+                                                       <th class="ps-2 pt-2">
+                                                         <div class="form-check">
+                                                           <input class="form-check-input" type="checkbox">
+                                                         </div>
+                                                       </th>
+                                                       <th class="p-2">Owner</th>
+                                                       <th class="p-2">Owner GLN</th>
+                                                      <th class="p-2">Location</th>
+                                                      <th class="p-2">Recorded Time</th>
+                                                       </tr>
+                                                       </thead>
+                                                       <tbody>
+                                                       <tr>
+                                                       <td class="ps-2 pt-2">
+                                                         <div class="form-check">
+                                                           <input class="form-check-input" type="checkbox">
+                                                         </div>
+                                                       </td>
+                                                       <td class="p-2">${selectedSsccData.disptch.consigner}</td>
+                                                       <td class="p-2">${selectedSsccData.disptch.sender_loc_gln}</td>
+
+                                                       <td class="p-2">${selectedSsccData.disptch.sender_location}</td>
+                                                       <td class="p-2">${selectedSsccData.location.recorded_time}</td>
+
+
+                                                       </tr>
+
+                                                       </tbody>
+
+                                                       </table>
+                                                       </div>
+                                                       <!--col-end-->
+                                                     </div>
+                                                     <!--row-end-->
+
+                                                 </div><!--mt2-tab-pane-end-->
+
+
+                                               </div>
+                                               <!--tabs-ends-here-->
+
+                                             </div>
+                                             <!-- modal-body-end -->
+                                             `;
+                                             $(".testing").html(temp);
+
+                                           })
+
+
+
+
+
+
+
+
+
+                                               </script>
+                                             <script src="{%static "assets/js/custom.js"%}"></script>
+
+                                           </body>
+                              {%else%}
+                              <h2>wrong</h2>
+                              {%endif%}
+                              {%endif%}
+{%endfor%}
+{%endblock%}
